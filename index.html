@@ -7,20 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0c0b09;
-    --card: #161410;
-    --deep: #1e1b16;
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --cream: #f0e6d3;
-    --muted: #6e6355;
-    --border: rgba(201,168,76,0.18);
+    --bg: #f0f0ee;
+    --card: #ffffff;
+    --deep: #e6e5e2;
+    --gold: #a07828;
+    --gold-light: #c49a3c;
+    --cream: #2c2a26;
+    --muted: #7a7670;
+    --border: rgba(160,120,40,0.20);
     --coral: #b84a35;
-    --green: #3a7a5e;
+    --green: #2d6b50;
     --brest: #1a6eb5;
     --brest-light: #2d8fd4;
-    --brest-bg: rgba(26,110,181,0.08);
-    --brest-border: rgba(26,110,181,0.25);
+    --brest-bg: rgba(26,110,181,0.07);
+    --brest-border: rgba(26,110,181,0.22);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,8 +35,8 @@
     justify-content: center;
     padding: 40px 20px 60px;
     background-image:
-      radial-gradient(ellipse at 10% 30%, rgba(201,168,76,0.04) 0%, transparent 55%),
-      radial-gradient(ellipse at 90% 70%, rgba(26,110,181,0.04) 0%, transparent 50%);
+      radial-gradient(ellipse at 10% 30%, rgba(160,120,40,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 70%, rgba(26,110,181,0.05) 0%, transparent 50%);
   }
 
   .container { width: 100%; max-width: 640px; }
@@ -508,14 +508,14 @@
         Le vendredi 27 mars, les célibataires du Finistère feront le tour du monde sans quitter leur lounge bar préféré. Passeport, tampons et belles rencontres au programme.<br><br>
         Avant de monter à bord, répondez à ce test de personnalité — il permettra à Lili de vous placer selon vos vraies compatibilités. Répondez instinctivement, pas comme vous voudriez être, mais comme vous êtes vraiment.
       </p>
-      <button class="btn-start" id="btn-embarquer">Embarquement Immédiat ✈️ →</button>
+      <button class="btn-start" id="btn-embarquer" onclick="showScreen('s-presentation')">Embarquement Immédiat ✈️ →</button>
       <p class="intro-meta">40 questions · 10 à 15 minutes · 9 profils possibles</p>
 
       <!-- Coordonnées Lili -->
       <div style="margin-top:32px; padding:18px 20px; background:var(--deep); border:1px solid var(--border); border-radius:4px; font-size:13px; color:var(--muted); line-height:2; text-align:left;">
         <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; font-weight:500;">Contact &amp; mentions légales</div>
         📍 Centre des Affaires Lorient La Base — 1 rue Étienne d'Orves, 56100 Lorient<br>
-        ✉️ lilikarantez@gmail.com<br>
+        ✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f29e9b9e9b999380939c869788b2959f939b9edc919d9f">[email&#160;protected]</a><br>
         🏢 SIRET : 40149331700069
       </div>
 
@@ -541,7 +541,7 @@
         <p style="margin-bottom:14px;"><strong style="color:var(--gold)">Mon moteur ?</strong> Remettre du sens, de la profondeur et de l'audace dans les relations humaines.</p>
         <div style="border-top:1px solid var(--border); padding-top:16px; font-size:13px; line-height:2;">
           📍 Centre des Affaires Lorient La Base — 1 rue Étienne d'Orves, 56100 Lorient<br>
-          ✉️ lilikarantez@gmail.com · 🏢 SIRET : 40149331700069
+          ✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddb1b4b1b4b6bcafbcb3a9b8a79dbab0bcb4b1f3beb2b0">[email&#160;protected]</a> · 🏢 SIRET : 40149331700069
         </div>
       </div>
 
@@ -559,7 +559,7 @@
       <div style="background:rgba(184,74,53,0.07); border:1px solid rgba(184,74,53,0.2); border-radius:4px; padding:18px 22px; font-size:13px; line-height:1.75; color:var(--muted); text-align:left; margin-bottom:24px;">
         <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#e08070; margin-bottom:8px; font-weight:500;">⚠️ Protection &amp; mentions légales</p>
         Ce questionnaire est une <strong style="color:var(--cream)">œuvre originale protégée</strong> par le droit de la propriété intellectuelle, créée par <strong style="color:var(--cream)">Lili Karantez — Cœurs Solitaires</strong> (SIRET : 40149331700069). Toute reproduction, copie ou utilisation commerciale sans autorisation écrite préalable est strictement interdite.<br><br>
-        Lili Karantez décline toute responsabilité en cas d'attitude malveillante ou de harcèlement entre participants. Les Cœurs Solitaires n'exercent pas une activité d'application de rencontre au sens légal du terme. La participation à nos événements implique l'acceptation de nos conditions générales, disponibles sur demande à lilikarantez@gmail.com.
+        Lili Karantez décline toute responsabilité en cas d'attitude malveillante ou de harcèlement entre participants. Les Cœurs Solitaires n'exercent pas une activité d'application de rencontre au sens légal du terme. La participation à nos événements implique l'acceptation de nos conditions générales, disponibles sur demande à <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deb2b7b2b7b5bfacbfb0aabba49eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a>.
       </div>
 
       <button class="btn-start" onclick="showScreen('s-inscrit')">Commencer le questionnaire ✈️ →</button>
@@ -656,7 +656,7 @@
         <label style="display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;margin-bottom:4px;">
           <input id="inp-rgpd" type="checkbox" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;width:16px;height:16px;">
           <span style="font-size:12px;color:var(--muted);line-height:1.6;">
-            ✅ J'accepte que mes données soient collectées par Lili Karantez — Cœurs Solitaires. Conformément au <strong style="color:var(--cream)">RGPD</strong>, droit d'accès et suppression : <strong style="color:var(--cream)">lilikarantez@gmail.com</strong>. Données conservées 1 an max, jamais transmises à des tiers.
+            ✅ J'accepte que mes données soient collectées par Lili Karantez — Cœurs Solitaires. Conformément au <strong style="color:var(--cream)">RGPD</strong>, droit d'accès et suppression : <strong style="color:var(--cream)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="482421242123293a29263c2d32082f25292124662b2725">[email&#160;protected]</a></strong>. Données conservées 1 an max, jamais transmises à des tiers.
           </span>
         </label>
         <label style="display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;margin-bottom:4px;">
@@ -680,6 +680,7 @@
 </div>
 
 <script>
+
 // PROFIL PERSONNEL
 var PROFIL_QS = [
   {cat:"Informations",q:"Quelle est ta ville et ton département ?",type:"text",placeholder:"Ex : Brest, Finistère (29)",key:"ville"},
@@ -1171,8 +1172,8 @@ function showScreen(id) {
 
 // BOUTONS PRINCIPAUX
 window.onload = function() {
-  var b = document.getElementById('btn-embarquer');
-  if(b) b.onclick = function(){ showScreen('s-presentation'); };
+  // S'assurer que l'écran intro est bien affiché au démarrage
+  showScreen('s-intro');
 };
 
 // INSCRIPTION
@@ -1329,7 +1330,8 @@ function submitCapture() {
   fd.append('newsletter',document.getElementById('inp-newsletter').checked);
   var pd=window._profilData||{};
   var keys=Object.keys(pd); for(var k=0;k<keys.length;k++) fd.append(keys[k],pd[keys[k]]);
-  fetch('https://formspree.io/f/xvzwpavv',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(function(e){console.error(e);});
+  fd.append('access_key', 'd42b8d9d-a52c-4888-a489-5dd59b1b0f5b');
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(function(e){console.error(e);});
   showResult();
 }
 
@@ -1370,7 +1372,7 @@ function showResult() {
     '</div>'+
     '<div class="lili-signature"><p>Merci d\'avoir pris le temps de vous confier. Les plus belles histoires commencent souvent par un voyage. Peut-être que votre prochaine grande aventure commence vendredi 27 mars, à Brest. ✈️🌍<br><br><strong>À très bientôt !</strong><br><em>Lili Karantez 🍷</em></p></div>'+
     '<div style="text-align:center;padding-top:16px;border-top:1px solid var(--border);margin-top:20px;">'+
-      '<p style="font-size:12px;color:var(--muted);line-height:2;margin-bottom:12px;"><strong style="color:var(--gold)">Lili Karantez</strong> — Cœurs Solitaires 💛<br>📍 Centre des Affaires Lorient La Base — 1 rue Étienne d\'Orves, 56100 Lorient<br>✉️ lilikarantez@gmail.com · 🏢 SIRET : 40149331700069<br><span style="font-size:11px;">© 2025 Lili Karantez · Tous droits réservés · Propriété intellectuelle exclusive</span></p>'+
+      '<p style="font-size:12px;color:var(--muted);line-height:2;margin-bottom:12px;"><strong style="color:var(--gold)">Lili Karantez</strong> — Cœurs Solitaires 💛<br>📍 Centre des Affaires Lorient La Base — 1 rue Étienne d\'Orves, 56100 Lorient<br>✉️ lilikarantez@gmail.com · 🏢 SIRET : 40149331700069<br><span style="font-size:11px;">© 2025 Lili Karantez · Tous droits réservés</span></p>'+
       '<button class="btn-retry" onclick="retry()">Recommencer le questionnaire</button>'+
     '</div>';
   showScreen('s-result');
@@ -1382,6 +1384,7 @@ function retry() {
   for(var i=1;i<=9;i++) scores[i]=0;
   showScreen('s-intro');
 }
+
 </script>
 </body>
 </html>
