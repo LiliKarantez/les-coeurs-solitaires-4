@@ -3,533 +3,1385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L'art de s'allumer — Les Cœurs Solitaires</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Test Ennéagramme – Soirée Brest 27 mars · Cœurs Solitaires</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: linear-gradient(160deg, #F5E8F5 0%, #E8C0E8 50%, #F5E8F5 100%);
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
+  :root {
+    --bg: #0c0b09;
+    --card: #161410;
+    --deep: #1e1b16;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f0e6d3;
+    --muted: #6e6355;
+    --border: rgba(201,168,76,0.18);
+    --coral: #b84a35;
+    --green: #3a7a5e;
+    --brest: #1a6eb5;
+    --brest-light: #2d8fd4;
+    --brest-bg: rgba(26,110,181,0.08);
+    --brest-border: rgba(26,110,181,0.25);
   }
-  header {
-    background: linear-gradient(135deg, #5A0050 0%, #A0005A 55%, #E08090 100%);
-    padding: 52px 40px 44px;
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px 60px;
+    background-image:
+      radial-gradient(ellipse at 10% 30%, rgba(201,168,76,0.04) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 70%, rgba(26,110,181,0.04) 0%, transparent 50%);
+  }
+
+  .container { width: 100%; max-width: 640px; }
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp 0.6s ease forwards; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .profil-input {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--cream);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .profil-input:focus { border-color: var(--gold); }
+  .profil-input::placeholder { color: var(--muted); }
+
+  /* ─── BADGE BREST ─── */
+  .brest-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brest-bg);
+    border: 1px solid var(--brest-border);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 12px; color: var(--brest-light);
+    letter-spacing: 1px; font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  /* ─── INTRO ─── */
+  .intro-wrap { text-align: center; padding: 16px 0 40px; }
+
+  .emblem {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--deep);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 24px;
+    box-shadow: 0 0 60px rgba(201,168,76,0.07);
+  }
+
+  .eyebrow {
+    font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 54px);
+    font-weight: 700; line-height: 1.1;
+    color: var(--cream); margin-bottom: 20px;
+  }
+  h1 em { color: var(--gold); font-style: italic; }
+
+  .intro-body {
+    font-size: 15px; line-height: 1.85; color: var(--muted);
+    max-width: 500px; margin: 0 auto 36px;
+  }
+
+  .btn-start {
+    background: var(--gold); color: var(--bg);
+    border: none; padding: 17px 48px;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500;
+    letter-spacing: 0.4px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-start:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,168,76,0.22);
+  }
+
+  .intro-meta {
+    margin-top: 14px; font-size: 11px;
+    color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  .sep { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+  .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 17px;
+    line-height: 1.8; color: var(--muted);
+    text-align: center; padding: 0 12px;
+  }
+
+  /* ─── QUIZ ─── */
+  .prog-wrap { margin-bottom: 38px; }
+
+  .prog-top {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 10px;
+  }
+
+  .prog-label {
+    font-size: 10px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gold); font-weight: 500;
+  }
+
+  .prog-count { font-size: 12px; color: var(--muted); }
+
+  .prog-bar {
+    height: 1px; background: rgba(255,255,255,0.07);
+    border-radius: 1px; overflow: hidden;
+  }
+
+  .prog-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: width 0.5s ease;
+  }
+
+  .category-tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(21px, 3.8vw, 28px);
+    font-weight: 600; line-height: 1.4;
+    color: var(--cream); margin-bottom: 30px;
+  }
+
+  .opts { display: flex; flex-direction: column; gap: 9px; }
+
+  .opt {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 11px 15px;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+
+  .opt:hover {
+    border-color: rgba(201,168,76,0.45);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .opt.sel {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .opt-dot {
+    width: 17px; height: 17px; border-radius: 50%;
+    border: 1px solid var(--muted); flex-shrink: 0;
+    margin-top: 2px; transition: all 0.18s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .opt.sel .opt-dot {
+    background: var(--gold); border-color: var(--gold);
+  }
+
+  .opt.sel .opt-dot::after {
+    content: ''; width: 5px; height: 5px;
+    background: var(--bg); border-radius: 50%;
+  }
+
+  .opt-text { font-size: 13px; line-height: 1.55; color: var(--cream); }
+
+  .btn-next {
+    margin-top: 26px; width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--gold); padding: 14px;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.4px; cursor: pointer;
+    transition: all 0.2s; display: none;
+  }
+
+  .btn-next.show { display: block; animation: fadeUp 0.3s ease; }
+  .btn-next:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+
+  /* ─── RESULT ─── */
+  .res-hero {
     text-align: center;
+    padding: 8px 0 36px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+
+  .type-bg-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 100px; font-weight: 700;
+    color: rgba(201,168,76,0.08);
+    line-height: 1; margin-bottom: -14px;
+  }
+
+  .res-eyebrow {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px; font-weight: 500;
+  }
+
+  .res-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 700; color: var(--cream);
+    line-height: 1.15; margin-bottom: 8px;
+  }
+
+  .res-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 19px;
+    color: var(--gold); margin-bottom: 22px;
+  }
+
+  .res-desc {
+    font-size: 15px; line-height: 1.88;
+    color: var(--muted); max-width: 520px; margin: 0 auto;
+  }
+
+  .res-section { margin-bottom: 30px; }
+
+  .sec-title {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    font-weight: 500; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+
+  .box {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px 24px;
+  }
+
+  .box p { font-size: 15px; line-height: 1.85; color: var(--cream); }
+
+  .traits-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+
+  .trait {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 3px; padding: 14px 16px;
+  }
+
+  .trait-icon { font-size: 18px; margin-bottom: 6px; }
+  .trait-label {
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 4px; font-weight: 500;
+  }
+  .trait-val { font-size: 13px; color: var(--cream); line-height: 1.5; }
+
+  .voisin {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 3px; padding: 20px 22px;
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+
+  .voisin-n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 700;
+    color: var(--gold); line-height: 1; flex-shrink: 0;
+  }
+
+  .voisin-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--cream); margin-bottom: 6px;
+  }
+
+  .voisin-why { font-size: 14px; line-height: 1.7; color: var(--muted); }
+
+  .compat-list { display: flex; flex-direction: column; gap: 9px; }
+
+  .compat-row {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 3px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .cn {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700;
+    color: var(--gold); width: 28px;
+    text-align: center; flex-shrink: 0;
+  }
+
+  .ci { flex: 1; }
+  .ci-name { font-size: 14px; font-weight: 500; color: var(--cream); margin-bottom: 3px; }
+  .ci-why { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .clv {
+    font-size: 11px; padding: 3px 10px;
+    border-radius: 20px; font-weight: 500; flex-shrink: 0;
+  }
+  .lv-h { background: rgba(58,122,94,0.2); color: #7ecfaa; }
+  .lv-m { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .lv-c { background: rgba(184,74,53,0.15); color: #e08070; }
+
+  .tension-box {
+    background: rgba(184,74,53,0.06);
+    border: 1px solid rgba(184,74,53,0.2);
+    border-radius: 3px; padding: 18px 22px;
+  }
+  .tension-box p { font-size: 14px; line-height: 1.8; color: var(--muted); }
+  .tension-box strong { color: var(--cream); }
+
+  /* ─── CTA BREST ─── */
+  .cta-brest {
+    background: linear-gradient(135deg, rgba(26,110,181,0.12), rgba(201,168,76,0.06));
+    border: 1px solid var(--brest-border);
+    border-radius: 6px;
+    padding: 32px 28px;
+    text-align: center;
+    margin: 36px 0 20px;
     position: relative;
     overflow: hidden;
   }
-  header::before {
-    content:''; position:absolute; top:-80px; right:-80px;
-    width:320px; height:320px; border-radius:50%;
-    background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 70%);
-  }
-  .header-brand {
-    font-family:'Cormorant Garamond',serif;
-    font-size:13px; letter-spacing:5px; text-transform:uppercase;
-    color:rgba(255,255,255,0.65); margin-bottom:12px;
-  }
-  header h1 {
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(42px,6vw,72px); font-weight:400;
-    color:white; line-height:1.1;
-  }
-  header h1 em { font-style:italic; }
-  header p { font-size:13px; color:rgba(255,255,255,0.5); margin-top:14px; letter-spacing:2px; }
-  .badge-18 {
-    display:inline-block; margin-top:16px;
-    background:rgba(255,255,255,0.15);
-    border:1.5px solid rgba(255,255,255,0.5);
-    color:white; font-family:'Nunito',sans-serif;
-    font-size:12px; font-weight:800; letter-spacing:3px;
-    padding:6px 20px; border-radius:100px;
-    text-transform:uppercase;
+
+  .cta-brest::before {
+    content: '🌊';
+    position: absolute;
+    font-size: 120px;
+    top: -20px; right: -20px;
+    opacity: 0.05;
   }
 
-  .stats {
-    display:flex; justify-content:center; gap:48px;
-    padding:28px 40px; background:white;
-    border-bottom:1px solid rgba(0,0,0,0.06); flex-wrap:wrap;
-  }
-  .stat { text-align:center; }
-  .stat-num { font-family:'Cormorant Garamond',serif; font-size:32px; color:#A0005A; display:block; }
-  .stat-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#bbb; margin-top:2px; }
-  .event-date { color:#E080C0; margin-right:4px; }
-
-  .filters {
-    display:flex; justify-content:center; gap:10px;
-    padding:32px 20px 16px; flex-wrap:wrap;
-  }
-  .filter-btn {
-    padding:10px 24px; border-radius:100px;
-    border:1.5px solid currentColor; background:transparent;
-    cursor:pointer; font-family:'Nunito',sans-serif;
-    font-size:12px; font-weight:700; letter-spacing:1px; transition:all 0.2s;
-  }
-  .filter-btn[data-type="all"]         { color:#140810; }
-  .filter-btn[data-type="question"]    { color:#A0005A; }
-  .filter-btn[data-type="action"]      { color:#3A7A5A; }
-  .filter-btn[data-type="affirmation"] { color:#9A6A10; }
-  .filter-btn[data-type="joker"]       { color:#5A40A0; }
-  .filter-btn.active,.filter-btn:hover { color:white !important; }
-  .filter-btn[data-type="all"].active,.filter-btn[data-type="all"]:hover         { background:#140810; border-color:#140810; }
-  .filter-btn[data-type="question"].active,.filter-btn[data-type="question"]:hover    { background:#A0005A; border-color:#A0005A; }
-  .filter-btn[data-type="action"].active,.filter-btn[data-type="action"]:hover      { background:#3A7A5A; border-color:#3A7A5A; }
-  .filter-btn[data-type="affirmation"].active,.filter-btn[data-type="affirmation"]:hover { background:#9A6A10; border-color:#9A6A10; }
-  .filter-btn[data-type="joker"].active,.filter-btn[data-type="joker"]:hover       { background:#5A40A0; border-color:#5A40A0; }
-
-  .count-bar { text-align:center; font-size:12px; color:#bbb; padding-bottom:20px; letter-spacing:1px; }
-
-  .grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    gap:24px; padding:0 32px 64px; max-width:1400px; margin:0 auto;
+  .cta-brest-eyebrow {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--brest-light);
+    font-weight: 500; margin-bottom: 14px;
   }
 
-  .card-wrap { perspective:1000px; height:700px; cursor:pointer; }
-  @media(max-width:768px){
-    .card-wrap { height:auto; min-height:580px; }
+  .cta-brest-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 700; color: var(--cream);
+    line-height: 1.2; margin-bottom: 10px;
   }
-  .card-inner {
-    width:100%; height:100%; position:relative;
-    transform-style:preserve-3d;
-    transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);
-    border-radius:20px;
-  }
-  .card-wrap.flipped .card-inner { transform:rotateY(180deg); }
-  .card-front, .card-back {
-    position:absolute; inset:0; border-radius:20px;
-    backface-visibility:hidden; -webkit-backface-visibility:hidden;
-    display:flex; flex-direction:column; overflow:hidden;
-    box-shadow:0 12px 48px rgba(90,0,80,0.2);
+  .cta-brest-title em { color: var(--gold); font-style: italic; }
+
+  .cta-brest-date {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brest-bg);
+    border: 1px solid var(--brest-border);
+    border-radius: 20px; padding: 6px 18px;
+    font-size: 13px; color: var(--brest-light);
+    font-weight: 500; margin: 14px 0 20px;
   }
 
-  /* RECTO */
-  .card-front {
-    background:linear-gradient(160deg, #D060B0 0%, #A00080 45%, #5A0050 100%);
-    align-items:center; justify-content:center;
-    text-align:center; padding:28px; position:relative;
+  .cta-brest-text {
+    font-size: 15px; line-height: 1.85;
+    color: var(--muted); margin-bottom: 28px;
+    max-width: 480px; margin-inline: auto;
   }
-  .card-front::after {
-    content:''; position:absolute; inset:14px;
-    border-radius:10px; border:1px solid rgba(0,0,0,0.2);
-    pointer-events:none;
-  }
-  .front-meta {
-    font-family:'Cormorant Garamond',serif;
-    font-size:13px; letter-spacing:2px; text-transform:uppercase;
-    color:rgba(0,0,0,0.5); margin-bottom:8px;
-    line-height:1.8;
-  }
-  .front-brand {
-    font-family:'Cormorant Garamond',serif;
-    font-size:17px; letter-spacing:4px; text-transform:uppercase;
-    color:rgba(0,0,0,0.6); margin-bottom:14px; font-weight:600;
-  }
-  .front-deco { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; }
-  .front-deco-line { height:1px; width:44px; background:rgba(0,0,0,0.25); }
-  .front-deco-diamond { width:8px; height:8px; background:rgba(0,0,0,0.35); transform:rotate(45deg); }
-  .front-icon { font-size:40px; margin-bottom:12px; display:block; }
-  .front-title { font-family:'Cormorant Garamond',serif; font-size:13px; color:rgba(255,255,255,0.85); letter-spacing:1px; margin-bottom:4px; }
-  .front-title-main { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:28px; color:white; line-height:1.2; margin-bottom:14px; }
+  .cta-brest-text strong { color: var(--cream); }
 
-  /* Collection sur recto */
-  .front-collection {
-    font-family:'Cormorant Garamond',serif;
-    font-size:10px; color:rgba(0,0,0,0.35);
-    letter-spacing:1px; line-height:1.8;
-    margin-top:6px;
+  .cta-brest-promise {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-bottom: 28px; text-align: left;
   }
 
-  /* VERSO */
-  .card-back { transform:rotateY(180deg); background:white; display:flex; flex-direction:column; }
-  .back-top { padding:12px 20px 0; display:flex; align-items:center; gap:8px; flex-shrink:0; }
-  .type-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-  .type-question    .type-dot { background:#A0005A; }
-  .type-action      .type-dot { background:#3A7A5A; }
-  .type-affirmation .type-dot { background:#9A6A10; }
-  .type-joker       .type-dot { background:#5A40A0; }
-  .type-lbl { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; }
-  .type-question    .type-lbl { color:#A0005A; }
-  .type-action      .type-lbl { color:#3A7A5A; }
-  .type-affirmation .type-lbl { color:#9A6A10; }
-  .type-joker       .type-lbl { color:#5A40A0; }
-  .card-num { font-family:'Cormorant Garamond',serif; font-size:14px; color:#ddd; margin-left:auto; }
+  .promise-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 3px; padding: 12px 14px;
+    font-size: 13px; color: var(--muted);
+    line-height: 1.5;
+  }
+  .promise-item span { display: block; color: var(--cream); font-weight: 500; margin-bottom: 2px; font-size: 12px; }
 
-  .card-body { flex:1; display:flex; flex-direction:column; justify-content:center; padding:12px 22px 8px; }
-  .card-icon { font-size:26px; margin-bottom:10px; display:block; }
-  .card-text { font-family:'Cormorant Garamond',serif; font-size:22px; line-height:1.65; color:#140810; margin-bottom:14px; }
-  .type-question    .card-text em { color:#A0005A; font-style:italic; }
-  .type-action      .card-text em { color:#3A7A5A; font-style:italic; }
-  .type-affirmation .card-text em { color:#9A6A10; font-style:italic; }
-  .type-joker       .card-text em { color:#5A40A0; font-style:italic; }
-
-  .ressenti-section {
-    padding: 0 22px 10px;
-    flex-shrink:0;
-    background: #FFF0FF;
-    border-top: 2px solid #A0005A;
-    padding-top: 10px;
+  .btn-brest {
+    width: 100%;
+    background: var(--brest);
+    color: white; border: none;
+    padding: 20px 36px;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.3px;
+    margin-bottom: 12px;
+    text-decoration: none; display: block;
   }
-  .ressenti-label {
-    font-family:'Cormorant Garamond',serif;
-    font-size:15px; color:#A0005A;
-    font-style:italic; font-weight:600;
-    margin-bottom:8px;
-    display:block;
-  }
-  .stars {
-    display:flex; gap:6px; margin-bottom:8px;
-  }
-  .star {
-    font-size:24px; cursor:pointer;
-    color:#ddd; transition:color 0.15s;
-    line-height:1;
-  }
-  .star.active { color:#A0005A; }
-  .ressenti-text {
-    width:100%;
-    border:1.5px solid #A0005A;
-    border-radius:8px;
-    padding:8px 10px;
-    font-family:'Cormorant Garamond',serif;
-    font-size:15px;
-    color:#140810;
-    resize:none;
-    height:52px;
-    outline:none;
-    transition:border-color 0.2s;
-    background:white;
-  }
-  .ressenti-text:focus { border-color:#5A0050; }
-  .ressenti-text::placeholder { color:#C090C0; font-style:italic; }
-
-  /* FOOTER CARTE */
-  .card-footer {
-    padding:8px 20px 10px;
-    border-top:1px solid rgba(0,0,0,0.05);
-    flex-shrink:0;
-  }
-  .footer-top {
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:4px;
-  }
-  .footer-brand {
-    font-family:'Cormorant Garamond',serif;
-    font-size:10px; color:#ccc; letter-spacing:1px;
-  }
-  .footer-num { font-family:'Cormorant Garamond',serif; font-size:12px; color:#ddd; }
-  .footer-legal {
-    font-size:9px; color:#ddd; text-align:center;
-    letter-spacing:0.5px; line-height:1.5;
-    font-family:'Nunito',sans-serif;
+  .btn-brest:hover {
+    background: var(--brest-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(26,110,181,0.35);
   }
 
-  /* FOOTER PAGE */
-  .page-footer {
-    background:#0A0508;
-    padding:28px 32px;
-    text-align:center;
+  .cta-urgence {
+    font-size: 12px; color: var(--coral);
+    letter-spacing: 0.5px; margin-bottom: 16px;
+    font-weight: 500;
   }
-  .footer-info {
-    font-family:'Cormorant Garamond',serif;
-    font-size:17px; color:rgba(255,255,255,0.5);
-    line-height:2.2; margin-bottom:16px;
-  }
-  .social-links { display:flex; justify-content:center; gap:20px; margin-bottom:16px; }
-  .social-link {
-    display:flex; align-items:center; gap:8px;
-    color:rgba(255,255,255,0.5); text-decoration:none;
-    font-size:13px; font-family:'Nunito',sans-serif;
-    transition:color 0.2s;
-  }
-  .social-link:hover { color:#E080C0; }
-  .social-link svg { width:18px; height:18px; fill:currentColor; }
-  .footer-copy {
-    font-size:11px; color:rgba(255,255,255,0.25);
-    font-family:'Nunito',sans-serif; letter-spacing:1px;
-    line-height:1.8;
-  }
-  .collection-list {
-    display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
-    margin-top:12px;
-  }
-  .collection-item {
-    font-size:11px; color:rgba(255,255,255,0.3);
-    border:1px solid rgba(255,255,255,0.1);
-    padding:4px 12px; border-radius:100px;
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-  }
-  .collection-item.active { color:#E080C0; border-color:rgba(240,160,176,0.3); }
 
-  .card-wrap.hidden { display:none; }
-  @media(max-width:600px){ .grid{padding:0 16px 48px;} .stats{gap:20px;} .card-wrap{height:780px;} .card-text{font-size:19px;} }
+  .cta-reassurance {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.7;
+  }
 
-  /* BULLE D'AIDE */
-  .welcome-overlay {
-    position:fixed; inset:0;
-    background:rgba(20,8,16,0.75);
-    display:flex; align-items:center; justify-content:center;
-    z-index:1000;
-    animation: fadeOutOverlay 0.6s ease 5s forwards;
+  .lili-signature {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 4px; padding: 22px 24px;
+    margin-bottom: 20px; text-align: center;
   }
-  .welcome-box {
-    background:white; border-radius:24px;
-    padding:28px 32px; text-align:center;
-    max-width:440px; width:88%;
-    box-shadow:0 24px 80px rgba(0,0,0,0.3);
-    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1), fadeOutBox 0.5s ease 5s forwards;
-    position:relative;
+
+  .lili-signature p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 17px;
+    line-height: 1.85; color: var(--cream);
   }
-  .welcome-box::before {
-    content:''; position:absolute; inset:0;
-    border-radius:24px; border:2px solid rgba(160,0,90,0.2);
-    pointer-events:none;
+
+  .btn-retry {
+    background: none; border: none;
+    color: var(--muted); font-size: 13px;
+    cursor: pointer; text-decoration: underline;
+    font-family: 'DM Sans', sans-serif;
   }
-  .welcome-icon { font-size:40px; margin-bottom:10px; display:block; }
-  .welcome-title {
-    font-family:'Cormorant Garamond',serif;
-    font-size:30px; font-style:italic;
-    color:#140810; margin-bottom:10px;
-  }
-  .welcome-text {
-    font-family:'Cormorant Garamond',serif;
-    font-size:17px; color:#888; line-height:1.7; margin-bottom:18px;
-  }
-  .welcome-text strong { color:#A0005A; font-style:italic; }
-  .welcome-progress { height:3px; background:#eee; border-radius:100px; overflow:hidden; }
-  .welcome-progress-bar {
-    height:100%; background:linear-gradient(90deg,#D060B0,#A0005A);
-    animation: progressBar 5s linear forwards;
-  }
-  .welcome-skip {
-    margin-top:12px; font-size:12px; color:#ccc;
-    cursor:pointer; font-family:'Nunito',sans-serif; letter-spacing:1px;
-  }
-  .welcome-skip:hover { color:#A0005A; }
-  @keyframes popIn { from{transform:scale(0.8);opacity:0;} to{transform:scale(1);opacity:1;} }
-  @keyframes fadeOutOverlay { to{opacity:0;pointer-events:none;} }
-  @keyframes fadeOutBox { to{transform:scale(0.95);opacity:0;} }
-  @keyframes progressBar { from{width:0%;} to{width:100%;} }
 </style>
 </head>
+
 <body>
+<div class="container">
 
-<div class="welcome-overlay" id="welcomeOverlay">
-  <div class="welcome-box">
-    <span class="welcome-icon">🔥</span>
-    <div class="welcome-title">Bienvenue !</div>
-    <div class="welcome-text">
-      Cliquez sur une carte pour la <strong>retourner</strong>
-      et découvrir son contenu.<br>
-      Utilisez les filtres pour choisir le type de carte.
+  <!-- ══ ÉCRAN 1 : INTRO ══ -->
+  <div class="screen active" id="s-intro">
+    <div class="intro-wrap">
+
+      <!-- En-tête Lili Karantez -->
+      <div style="text-align:center; margin-bottom:28px;">
+        <div style="font-size:44px; margin-bottom:6px; filter:drop-shadow(0 0 12px rgba(201,168,76,0.35));">🤍</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(20px,3.5vw,26px); font-weight:700; color:var(--cream); letter-spacing:0.5px; margin-bottom:2px;">Lili Karantez</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(14px,2.5vw,17px); color:var(--gold); letter-spacing:0.5px;">Les Cœurs Solitaires</div>
+      </div>
+
+      <div class="brest-badge">🌍 Soirée Brest · Vendredi 27 mars · Thème Voyage</div>
+      <div class="eyebrow">Test de compatibilité et personnalité · Ennéagramme</div>
+      <h1>Et si ta prochaine histoire d'amour commençait…</h1>
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(20px,4vw,34px); color:var(--gold); margin-bottom:28px; line-height:1.5;">
+        au Brésil ? Ou en Islande ? Ou au Japon ?<br>ou Ailleurs ?<br>
+        <span style="font-size:0.78em; color:var(--cream);">Tout ça… sans quitter Brest. 🌍</span>
+      </p>
+      <p class="intro-body">
+        Le vendredi 27 mars, les célibataires du Finistère feront le tour du monde sans quitter leur lounge bar préféré. Passeport, tampons et belles rencontres au programme.<br><br>
+        Avant de monter à bord, répondez à ce test de personnalité — il permettra à Lili de vous placer selon vos vraies compatibilités. Répondez instinctivement, pas comme vous voudriez être, mais comme vous êtes vraiment.
+      </p>
+      <button class="btn-start" id="btn-embarquer">Embarquement Immédiat ✈️ →</button>
+      <p class="intro-meta">40 questions · 10 à 15 minutes · 9 profils possibles</p>
+
+      <!-- Coordonnées Lili -->
+      <div style="margin-top:32px; padding:18px 20px; background:var(--deep); border:1px solid var(--border); border-radius:4px; font-size:13px; color:var(--muted); line-height:2; text-align:left;">
+        <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; font-weight:500;">Contact &amp; mentions légales</div>
+        📍 Centre des Affaires Lorient La Base — 1 rue Étienne d'Orves, 56100 Lorient<br>
+        ✉️ lilikarantez@gmail.com<br>
+        🏢 SIRET : 40149331700069
+      </div>
+
     </div>
-    <div class="welcome-progress"><div class="welcome-progress-bar"></div></div>
-    <div class="welcome-skip" onclick="document.getElementById('welcomeOverlay').style.display='none'">Passer ✕</div>
-  </div>
-</div>
-
-<header>
-  <div class="header-brand">Lili Karantez · Les Cœurs Solitaires</div>
-  <h1>L'art de <em>s'allumer</em></h1>
-  <p>52 cartes · Jeu 5</p>
-  <div class='badge-18'>⛔ Interdit aux moins de 18 ans</div>
-</header>
-
-<div class="stats">
-  <div class="stat"><span class="stat-num">20</span><span class="stat-label">Questions</span></div>
-  <div class="stat"><span class="stat-num">16</span><span class="stat-label">Actions</span></div>
-  <div class="stat"><span class="stat-num">10</span><span class="stat-label">Affirmations</span></div>
-  <div class="stat"><span class="stat-num">6</span><span class="stat-label">Jokers</span></div>
-</div>
-
-<div class="filters">
-  <button class="filter-btn active" data-type="all">Toutes (52)</button>
-  <button class="filter-btn" data-type="question">🌸 Questions (20)</button>
-  <button class="filter-btn" data-type="action">✨ Actions (16)</button>
-  <button class="filter-btn" data-type="affirmation">💛 Affirmations (10)</button>
-  <button class="filter-btn" data-type="joker">🃏 Jokers (6)</button>
-</div>
-<div class="count-bar" id="countBar">52 cartes affichées · Cliquez pour retourner</div>
-<div class="grid" id="grid"></div>
-
-<div class="page-footer">
-  <div class="footer-info">
-    Entrepreneure · Auteure · Editrice · Créatrice d'expériences relationnelles<br>
-    <strong style="color:rgba(255,255,255,0.6)">Lili Karantez</strong><br>
-    📍 Centre des Affaires Lorient La Base — 1 rue Étienne d'Orves, 56100 Lorient<br>
-    ✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="690500050002081b08071d0c13290e04080005470a0604">[email&#160;protected]</a> · SIRET : 40149331700069
-  </div>
-  <div class="social-links">
-    <a class="social-link" href="https://www.facebook.com/lili.karantez.3" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      Facebook
-    </a>
-    <a class="social-link" href="https://www.instagram.com/lilikarantez/" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      Instagram
-    </a>
+    <hr class="sep">
+    <p class="quote">
+      « Le voyage est la seule chose qu'on achète qui nous rend plus riche. »<br>— Anonyme
+    </p>
   </div>
 
-  <div class="footer-copy" style="margin-top:16px">
-    © Lili Karantez — Tous droits réservés.<br>
-    Toute reproduction, même partielle, est strictement interdite sans autorisation écrite de l'auteure.
+  <!-- ══ ÉCRAN 2 : PRÉSENTATION LILI ══ -->
+  <div class="screen" id="s-presentation">
+    <div style="text-align:center; padding: 16px 0 32px;">
+      <div class="emblem">✈️</div>
+      <div class="brest-badge">🌍 Soirée Brest · Vendredi 27 mars · Thème Voyage</div>
+      <h1 style="font-size:clamp(26px,4vw,36px); margin-bottom:6px;">Lili Karantez</h1>
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; color:var(--gold); margin-bottom:24px;">Entrepreneure · Auteure · Éditrice · Créatrice d'expériences relationnelles</p>
+
+      <!-- Présentation -->
+      <div style="background:var(--deep); border:1px solid var(--border); border-radius:4px; padding:24px 28px; text-align:left; font-size:15px; line-height:1.85; color:var(--muted); margin-bottom:16px;">
+        <p style="margin-bottom:14px;">Je suis Lili Karantez — et je crois profondément que la rencontre mérite un cadre, une intention et une mise en scène subtile.</p>
+        <p style="margin-bottom:14px;">Fondatrice des <strong style="color:var(--cream)">Cœurs Solitaires</strong>, j'organise des dîners entre inconnus pour célibataires dans le Grand Ouest — conçus pour favoriser des échanges authentiques, loin des algorithmes et des profils à swiper.</p>
+        <p style="margin-bottom:14px;"><strong style="color:var(--gold)">Mon moteur ?</strong> Remettre du sens, de la profondeur et de l'audace dans les relations humaines.</p>
+        <div style="border-top:1px solid var(--border); padding-top:16px; font-size:13px; line-height:2;">
+          📍 Centre des Affaires Lorient La Base — 1 rue Étienne d'Orves, 56100 Lorient<br>
+          ✉️ lilikarantez@gmail.com · 🏢 SIRET : 40149331700069
+        </div>
+      </div>
+
+      <!-- Finalité de l'outil -->
+      <div style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.22); border-radius:4px; padding:20px 24px; text-align:left; margin-bottom:16px;">
+        <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; font-weight:500;">🎯 À quoi sert ce questionnaire ?</p>
+        <p style="font-size:13px; line-height:1.85; color:var(--muted);">
+          Ce questionnaire a une <strong style="color:var(--cream)">double finalité</strong> :<br><br>
+          <strong style="color:var(--cream)">1. Mieux vous connaître</strong> — grâce à l'Ennéagramme, vous découvrez votre profil de personnalité profond, vos compatibilités naturelles et ce qui vous rend unique en amour.<br><br>
+          <strong style="color:var(--cream)">2. Préparer votre soirée</strong> — vos réponses permettent à Lili de vous placer à table selon vos vraies affinités. C'est la promesse des Cœurs Solitaires : des rencontres qui ont du sens, pas au hasard.
+        </p>
+      </div>
+
+      <!-- Protection légale -->
+      <div style="background:rgba(184,74,53,0.07); border:1px solid rgba(184,74,53,0.2); border-radius:4px; padding:18px 22px; font-size:13px; line-height:1.75; color:var(--muted); text-align:left; margin-bottom:24px;">
+        <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#e08070; margin-bottom:8px; font-weight:500;">⚠️ Protection &amp; mentions légales</p>
+        Ce questionnaire est une <strong style="color:var(--cream)">œuvre originale protégée</strong> par le droit de la propriété intellectuelle, créée par <strong style="color:var(--cream)">Lili Karantez — Cœurs Solitaires</strong> (SIRET : 40149331700069). Toute reproduction, copie ou utilisation commerciale sans autorisation écrite préalable est strictement interdite.<br><br>
+        Lili Karantez décline toute responsabilité en cas d'attitude malveillante ou de harcèlement entre participants. Les Cœurs Solitaires n'exercent pas une activité d'application de rencontre au sens légal du terme. La participation à nos événements implique l'acceptation de nos conditions générales, disponibles sur demande à lilikarantez@gmail.com.
+      </div>
+
+      <button class="btn-start" onclick="showScreen('s-inscrit')">Commencer le questionnaire ✈️ →</button>
+      <p style="margin-top:14px; font-size:11px; color:var(--muted); letter-spacing:1px;">© 2025 Lili Karantez · Création originale · Tous droits réservés</p>
+    </div>
   </div>
+
+  <!-- ══ ÉCRAN 3 : INSCRIPTION ? ══ -->
+  <div class="screen" id="s-inscrit">
+    <div style="text-align:center; padding:20px 0 10px;">
+      <div class="emblem">🎟️</div>
+      <div class="brest-badge">🌍 Soirée Brest · Vendredi 27 mars</div>
+    </div>
+    <div class="category-tag">Soirée Brest</div>
+    <div class="q-text">Êtes-vous déjà inscrit·e à la soirée du 27 mars à Brest ?</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;" id="inscrit-opts">
+      <label class="inscrit-opt" onclick="selectInscrit('oui', this)" style="display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:3px;padding:16px 18px;cursor:pointer;transition:all 0.18s;">
+        <div class="opt-dot" id="dot-oui"></div>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--cream);margin-bottom:2px;">✅ Oui, je suis déjà inscrit·e</div>
+          <div style="font-size:12px;color:var(--muted);">J'ai payé ma place sur Yurplan</div>
+        </div>
+      </label>
+      <label class="inscrit-opt" onclick="selectInscrit('non', this)" style="display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:3px;padding:16px 18px;cursor:pointer;transition:all 0.18s;">
+        <div class="opt-dot" id="dot-non"></div>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--cream);margin-bottom:2px;">🎟️ Non, pas encore</div>
+          <div style="font-size:12px;color:var(--muted);">Je découvre la soirée — je suis intéressé·e</div>
+        </div>
+      </label>
+      <label class="inscrit-opt" onclick="selectInscrit('hesiter', this)" style="display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:3px;padding:16px 18px;cursor:pointer;transition:all 0.18s;">
+        <div class="opt-dot" id="dot-hesiter"></div>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--cream);margin-bottom:2px;">🤔 J'hésite encore</div>
+          <div style="font-size:12px;color:var(--muted);">Je remplis le questionnaire avant de décider</div>
+        </div>
+      </label>
+    </div>
+    <div id="inscrit-error" style="color:#e08070;font-size:13px;margin-top:8px;display:none;">Merci de choisir une réponse pour continuer.</div>
+    <div style="display:flex;gap:10px;margin-top:20px;">
+      <button class="btn-next show" onclick="showScreen('s-presentation')" style="width:auto;padding:14px 20px;opacity:0.6;">← Retour</button>
+      <button class="btn-next show" onclick="nextInscrit()" style="flex:1;">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ ÉCRAN 4 : PROFIL PERSONNEL ══ -->
+  <div class="screen" id="s-profil">
+    <div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-label">Votre profil</span>
+        <span class="prog-count" id="profil-count">1 / 28</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="profil-fill" style="width:0%"></div></div>
+    </div>
+    <div class="category-tag" id="profil-cat">Informations</div>
+    <div class="q-text" id="profil-q"></div>
+    <div id="profil-field"></div>
+    <div id="profil-error" style="color:#e08070;font-size:13px;margin-top:8px;display:none;">Ce champ est obligatoire.</div>
+    <div style="display:flex;gap:10px;margin-top:20px;">
+      <button class="btn-next show" id="profil-back" onclick="backProfil()" style="width:auto;padding:14px 20px;opacity:0.6;">← Retour</button>
+      <button class="btn-next show" id="profil-btn" onclick="nextProfil()" style="flex:1;">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ ÉCRAN 5 : QUIZ ENNÉAGRAMME ══ -->
+  <div class="screen" id="s-quiz">
+    <div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-label" id="prog-label">Personnalité</span>
+        <span class="prog-count" id="prog-count">1 / 30</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="category-tag" id="cat-tag">Personnalité</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="opts" id="opts"></div>
+    <div style="display:flex;gap:10px;margin-top:26px;">
+      <button class="btn-next show" onclick="backQ()" style="width:auto;padding:14px 20px;opacity:0.6;">← Retour</button>
+      <button class="btn-next" id="btn-next" onclick="nextQ()" style="flex:1;">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ ÉCRAN 6 : CAPTURE EMAIL ══ -->
+  <div class="screen" id="s-capture">
+    <div style="text-align:center; padding: 20px 0 40px;">
+      <div class="emblem">✉️</div>
+      <div class="brest-badge">🌍 Soirée Brest · Vendredi 27 mars</div>
+      <h1 style="font-size:clamp(28px,5vw,40px); margin-bottom:16px;">Votre profil est prêt —<br><em>une dernière étape</em></h1>
+      <p class="intro-body" style="margin-bottom:32px;">Entrez votre prénom et votre email pour accéder à votre profil complet et découvrir vos compatibilités.</p>
+      <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin:0 auto 24px;">
+        <input id="inp-prenom" type="text" placeholder="Votre prénom" style="background:var(--deep);border:1px solid var(--border);border-radius:3px;padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--cream);outline:none;width:100%;">
+        <input id="inp-email" type="email" placeholder="Votre email" style="background:var(--deep);border:1px solid var(--border);border-radius:3px;padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--cream);outline:none;width:100%;">
+        <div id="cap-error" style="color:#e08070;font-size:13px;display:none;">Merci de remplir les deux champs.</div>
+        <label style="display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;margin-bottom:4px;">
+          <input id="inp-rgpd" type="checkbox" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;width:16px;height:16px;">
+          <span style="font-size:12px;color:var(--muted);line-height:1.6;">
+            ✅ J'accepte que mes données soient collectées par Lili Karantez — Cœurs Solitaires. Conformément au <strong style="color:var(--cream)">RGPD</strong>, droit d'accès et suppression : <strong style="color:var(--cream)">lilikarantez@gmail.com</strong>. Données conservées 1 an max, jamais transmises à des tiers.
+          </span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;margin-bottom:4px;">
+          <input id="inp-relation" type="checkbox" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;width:16px;height:16px;">
+          <span style="font-size:12px;color:var(--muted);line-height:1.6;">💙 J'accepte d'éventuelles mises en relation personnalisées par Lili Karantez.</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;">
+          <input id="inp-newsletter" type="checkbox" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;width:16px;height:16px;">
+          <span style="font-size:12px;color:var(--muted);line-height:1.6;">📩 Je souhaite recevoir la newsletter des Cœurs Solitaires.</span>
+        </label>
+        <div id="rgpd-error" style="color:#e08070;font-size:13px;margin-top:4px;display:none;">Merci d'accepter la politique de confidentialité pour continuer.</div>
+        <button class="btn-start" onclick="submitCapture()">Découvrir mon profil →</button>
+      </div>
+      <p style="font-size:11px;color:var(--muted);letter-spacing:1px;">Aucun spam. Vos données restent confidentielles.</p>
+    </div>
+  </div>
+
+  <!-- ══ ÉCRAN 7 : RÉSULTAT ══ -->
+  <div class="screen" id="s-result"></div>
+
 </div>
 
 <script>
-const cards = [
-  {type:"question",icon:"🔥",text:"Décrivez en détail la dernière fois où vous avez eu envie de quelqu'un de façon irrésistible. Qu'est-ce qui vous a fait basculer ?"},
-  {type:"question",icon:"💋",text:"Quel est le fantasme que vous n'avez encore jamais osé réaliser et qui revient vous hanter régulièrement ?"},
-  {type:"question",icon:"🌶️",text:"Qu'est-ce qui vous excite le plus dans les premières minutes d'une rencontre physique ? Un geste précis, une odeur, une façon de vous regarder ?"},
-  {type:"question",icon:"🕯️",text:"Décrivez votre nuit érotique idéale dans les moindres détails : le lieu, l'ambiance, ce que vous voulez donner et recevoir."},
-  {type:"question",icon:"⚡",text:"Quelle partie de votre corps est la plus sensible et la plus érogène ? Aimez-vous qu'on la découvre seul(e) ou qu'on vous guide ?"},
-  {type:"question",icon:"🌹",text:"Racontez le moment le plus torride de votre vie. Qu'est-ce qui le rendait si intense et si inoubliable ?"},
-  {type:"question",icon:"🦋",text:"Qu'est-ce que vous n'avez jamais osé demander à un(e) partenaire au lit par peur d'être jugé(e), mais qui vous attire profondément ?"},
-  {type:"question",icon:"💎",text:"Comment aimez-vous qu'on vous touche pour la première fois ? Avec douceur, avec assurance, avec lenteur ? Montrez-nous avec vos mots."},
-  {type:"question",icon:"🌊",text:"Qu'est-ce qui vous fait perdre complètement le contrôle pendant un moment d'intimité ? Une parole, un geste, une façon d'être regardé(e) ?"},
-  {type:"question",icon:"✨",text:"Si vous pouviez envoyer un message érotique anonyme à quelqu'un qui vous attire ce soir, qu'est-ce que vous lui écririez sans aucune retenue ?"},
-  {type:"question",icon:"🎭",text:"Quelle expérience érotique vous a le plus surpris(e) dans votre vie ? Celle que vous n'attendiez pas et qui a tout changé ?"},
-  {type:"question",icon:"💫",text:"Qu'aimez-vous le plus dans votre façon de faire l'amour ? Ce que vous donnez à l'autre ou ce que vous vous autorisez à recevoir ?"},
-  {type:"question",icon:"🌙",text:"Y a-t-il une expérience érotique que vous n'avez jamais vécue et qui vous attire depuis longtemps ? Qu'est-ce qui vous a retenu jusqu'ici ?"},
-  {type:"question",icon:"🌺",text:"Qu'est-ce qu'un(e) partenaire pourrait vous murmurer à l'oreille qui vous ferait complètement perdre la tête sur le moment ?"},
-  {type:"question",icon:"🎯",text:"Quelle est la différence pour vous entre une nuit de sexe brûlant et une nuit d'intimité profonde ? De laquelle avez-vous le plus envie en ce moment ?"},
-  {type:"question",icon:"🔑",text:"Qu'est-ce que vous aimeriez qu'on vous fasse et que vous n'avez encore jamais demandé clairement et explicitement à voix haute ?"},
-  {type:"question",icon:"💥",text:"Comment votre rapport au plaisir physique a-t-il changé avec l'âge ? Êtes-vous plus libre, plus exigeant(e), plus à l'écoute de votre corps ?"},
-  {type:"question",icon:"🌸",text:"Qu'est-ce qui vous rend le plus désirable et le plus puissant(e) au lit selon vous ? Votre présence, votre audace, votre façon d'être à l'écoute ?"},
-  {type:"question",icon:"🎵",text:"Quelle ambiance vous plonge le plus vite dans un état de désir physique intense ? La musique, la lumière, le parfum de l'autre ou ses mots ?"},
-  {type:"question",icon:"🌟",text:"Si vous pouviez vivre une scène érotique ce soir sans aucune limite ni jugement, avec la personne de votre choix, que se passerait-il ?"},
-  {type:"action",icon:"👁️",text:"Aujourd'hui, regardez quelqu'un dans les yeux <em>une seconde de plus que d'habitude</em>. Observez ce qui se passe en vous et chez l'autre."},
-  {type:"action",icon:"🕯️",text:"Créez une atmosphère sensuelle chez vous ce soir : bougies, musique, parfum. <em>Installez-vous dedans et sentez votre propre présence comme désirable.</em>"},
-  {type:"action",icon:"💃",text:"Dressez la liste de <em>vos 5 atouts de séduction</em>, pas uniquement physiques. Votre humour, votre écoute, votre regard, votre façon de raconter. Lisez-la à voix haute."},
-  {type:"action",icon:"✍️",text:"Écrivez un texte érotique de 5 lignes mettant en scène une rencontre avec quelqu'un qui vous attire. <em>Ne vous censurez pas. C'est pour vous.</em>"},
-  {type:"action",icon:"🔥",text:"Envoyez un message audacieux à quelqu'un qui vous plaît. <em>Pas vulgaire, juste suffisamment direct pour qu'il ou elle comprenne que vous le désirez.</em>"},
-  {type:"action",icon:"🎨",text:"Habillez-vous demain matin pour vous plaire à vous, avec intention et soin. <em>Observez comment vous marchez quand vous vous sentez séduisant(e).</em>"},
-  {type:"action",icon:"🌹",text:"Offrez un compliment direct et précis à quelqu'un aujourd'hui, pas vague mais ciblé. <em>« J'aime ta façon de… », « Ce que tu as dit tout à l'heure m'a touché(e). »</em>"},
-  {type:"action",icon:"🎵",text:"Créez une playlist <em>« Feu intérieur »</em>, les chansons qui réveillent quelque chose de chaud en vous. Écoutez-la en vous préparant cette semaine."},
-  {type:"action",icon:"📸",text:"Faites un selfie dans votre état le plus séduisant, pas pour publier. <em>Regardez-vous avec ce regard allumé. Gardez-le comme rappel de qui vous êtes.</em>"},
-  {type:"action",icon:"💌",text:"Écrivez un message à quelqu'un qui vous plaît ou vous a plu, <em>sans attente de réponse</em>, juste pour le plaisir d'exprimer quelque chose de vrai."},
-  {type:"action",icon:"🌶️",text:"Aujourd'hui, osez une chose légèrement audacieuse : un regard appuyé, une remarque piquante, un message inattendu. <em>Juste une. Observez ce que ça libère.</em>"},
-  {type:"action",icon:"🤝",text:"Partagez avec la personne en face de vous <em>ce que vous trouvez irrésistible chez quelqu'un</em>, une qualité, un geste, une façon d'être. Soyez précis(e)."},
-  {type:"action",icon:"🌟",text:"Imaginez votre version la plus magnétique et confiante. <em>Marchez comme elle pendant 5 minutes.</em> Le corps change l'état d'esprit."},
-  {type:"action",icon:"😄",text:"Souriez à trois inconnus aujourd'hui, un vrai sourire, pas poli. <em>Notez les réactions et ce que vous ressentez dans votre corps.</em>"},
-  {type:"action",icon:"💬",text:"Engagez une conversation avec quelqu'un que vous n'auriez pas abordé spontanément. <em>Commencez par un compliment sincère et précis.</em>"},
-  {type:"action",icon:"⚡",text:"Identifiez une habitude qui éteint votre énergie de séduction : l'auto-critique, le repli, l'attente. <em>Quelle habitude plus légère pourriez-vous lui substituer cette semaine ?</em>"},
-  {type:"affirmation",icon:"🔥",text:"Je suis magnétique. <em>Mon énergie attire ce qui me ressemble.</em>"},
-  {type:"affirmation",icon:"⚡",text:"J'ai le droit de désirer et d'être désiré(e). <em>Le désir est une force vitale, pas une faiblesse.</em>"},
-  {type:"affirmation",icon:"💃",text:"Je suis séduisant(e) quand je suis moi-même. <em>Mon authenticité est mon arme la plus puissante.</em>"},
-  {type:"affirmation",icon:"🌹",text:"Je rallume mon feu intérieur. <em>Il n'attendait que ma permission.</em>"},
-  {type:"affirmation",icon:"✨",text:"J'ose prendre ma place dans la séduction. <em>Je n'attends plus que l'autre fasse tout.</em>"},
-  {type:"affirmation",icon:"💋",text:"Mon regard, mon sourire, ma présence ont du pouvoir. <em>Je l'assume pleinement.</em>"},
-  {type:"affirmation",icon:"🌙",text:"Je me libère de la peur du rejet. <em>Oser est déjà une victoire.</em>"},
-  {type:"affirmation",icon:"🦋",text:"Je suis vivant(e), désirable et prêt(e). <em>La vie amoureuse qui m'attend est belle.</em>"},
-  {type:"affirmation",icon:"💎",text:"Mon charme ne s'est pas éteint. <em>Il s'est affiné avec le temps et l'expérience.</em>"},
-  {type:"affirmation",icon:"🌟",text:"Je brille quand je m'autorise à briller. <em>Aujourd'hui, je choisis de briller.</em>"},
-  {type:"joker",icon:"🃏",text:"Regardez la personne en face de vous et dites-lui : <em>« Ce qui m'attire dans ta façon d'être ce soir, c'est… »</em> Soyez précis(e) et sincère."},
-  {type:"joker",icon:"🎲",text:"Tout le groupe répond : <em>« Mon arme de séduction secrète, c'est… »</em> Une phrase, sans fausse modestie."},
-  {type:"joker",icon:"🌀",text:"Échangez cette carte. Chacun dit à l'autre : <em>« Si tu osais vraiment séduire ce soir, qu'est-ce que tu ferais ? »</em> Répondez honnêtement."},
-  {type:"joker",icon:"🔥",text:"Tout le monde se lève. <em>Présentez-vous à quelqu'un que vous n'avez pas encore rencontré ce soir</em>, comme si vous étiez la personne la plus confiante de la pièce."},
-  {type:"joker",icon:"🌟",text:"L'animateur(trice) pose la question : <em>« Quel est le compliment le plus torride qu'on vous ait jamais fait ? »</em> Tout le monde répond."},
-  {type:"joker",icon:"💫",text:"Choisissez quelqu'un dans la pièce et dites-lui en une phrase <em>ce que vous feriez avec lui ou elle si vous étiez seul(e)s.</em> Soyez audacieux(se)."},
+// PROFIL PERSONNEL
+var PROFIL_QS = [
+  {cat:"Informations",q:"Quelle est ta ville et ton département ?",type:"text",placeholder:"Ex : Brest, Finistère (29)",key:"ville"},
+  {cat:"Informations",q:"Quel est ton âge ?",type:"text",placeholder:"Ex : 34 ans",key:"age"},
+  {cat:"Informations",q:"Quelle est ta profession ?",type:"text",placeholder:"Confidentiel — ne sera pas partagé publiquement",key:"profession"},
+  {cat:"Géographie",q:"Quelle est ta zone géographique recherchée pour une relation ?",type:"textarea",placeholder:"Ex : Bretagne, max 50 km autour de Brest, toute la France...",key:"zone"},
+  {cat:"Famille",q:"As-tu des enfants ? Souhaites-tu en avoir (ou plus du tout) ?",type:"textarea",placeholder:"Réponds librement — il n'y a pas de bonne ou mauvaise réponse.",key:"enfants"},
+  {cat:"Description",q:"Peux-tu me décrire ton physique ?",type:"textarea",placeholder:"Taille, silhouette, couleur des cheveux et des yeux...",key:"physique"},
+  {cat:"Relation",q:"Quelles sont tes 3 priorités dans un couple ?",type:"textarea",placeholder:"Ex : la confiance, le partage, l'humour...",key:"priorités_couple"},
+  {cat:"Relation",q:"Quelles sont les 3 qualités indispensables chez un·e partenaire ?",type:"textarea",placeholder:"Ex : la bienveillance, la loyauté, la curiosité...",key:"qualités_partenaire"},
+  {cat:"Relation",q:"Et les 3 choses rédhibitoires pour toi dans une relation ?",type:"textarea",placeholder:"Ex : le mensonge, la jalousie excessive...",key:"redhibitoires"},
+  {cat:"Goûts",q:"Qu'est-ce que tu aimes dans la vie ? Et ce que tu détestes ?",type:"textarea",placeholder:"Plat préféré, livre, film, endroit de rêve...",key:"gouts"},
+  {cat:"Rythme",q:"Quel serait ton rythme idéal pour une nouvelle relation ?",type:"textarea",placeholder:"Tranquille / passionnée / fusionnelle / indépendante...",key:"rythme"},
+  {cat:"Identité",q:"Comment te définirais-tu en 3 mots ?",type:"text",placeholder:"Ex : curieux, chaleureux, libre",key:"3mots"},
+  {cat:"Loisirs",q:"Quels sont tes loisirs, hobbies et passions ?",type:"textarea",placeholder:"Sport, culture, voyages, cuisine, musique...",key:"loisirs"},
+  {cat:"Attirance",q:"Quels sont les critères qui te font craquer ? Décris ton match idéal.",type:"textarea",placeholder:"Physique, caractère, distance géographique...",key:"match_idéal"},
+  {cat:"Amour",q:"Quels sont les 3 mots qui te viennent quand tu penses à l'amour ?",type:"text",placeholder:"Ex : confiance, douceur, aventure",key:"mots_amour"},
+  {cat:"Avenir",q:"Comment te sens-tu par rapport à l'idée de vivre ensemble ? Ton rêve le plus fou ?",type:"textarea",placeholder:"Prends le temps de te confier.",key:"avenir"},
+  {cat:"Voyage",q:"Si tu pouvais partir demain pour un mois, ou irais-tu en premier ?",type:"text",placeholder:"Ex : Japon, Islande, Bresil, Maroc...",key:"v_destination"},
+  {cat:"Voyage",q:"Quel voyage t'a le plus transformé ou marqué dans ta vie ?",type:"textarea",placeholder:"Un lieu, une rencontre, une expérience...",key:"v_marquant"},
+  {cat:"Voyage",q:"Comment voyages-tu idéalement ?",type:"radio",key:"v_style",opts:[
+    {v:"sac_dos",l:"Sac a dos, auberges, improvisation totale"},
+    {v:"confort",l:"Hotel confortable, itineraire prepare"},
+    {v:"mixte",l:"Un mix des deux selon l'humeur"},
+    {v:"luxe",l:"Beau voyage, belles adresses, on profite"}
+  ]},
+  {cat:"Voyage",q:"Quelle destination te plairait pour ton prochain voyage ?",type:"text",placeholder:"Ex : la Patagonie, les iles Feroe, le Tibet...",key:"v_reve"},
+  {cat:"Voyage",q:"Le voyage, c'est surtout pour toi...",type:"radio",key:"v_sens",opts:[
+    {v:"decouverte",l:"Decouvrir de nouvelles cultures"},
+    {v:"ressourcer",l:"Me ressourcer et me retrouver"},
+    {v:"partager",l:"Partager des moments forts avec quelqu'un"},
+    {v:"aventure",l:"L'aventure, sortir de ma zone de confort"}
+  ]},
+  {cat:"Voyage",q:"Es-tu plutot mer, montagne, ville ou campagne en vacances ?",type:"radio",key:"v_nature",opts:[
+    {v:"mer",l:"Mer et plages"},
+    {v:"montagne",l:"Montagne et grands espaces"},
+    {v:"ville",l:"Villes, culture, restos"},
+    {v:"campagne",l:"Campagne, calme, nature"}
+  ]},
+  {cat:"Voyage",q:"Quelle langue etrangere parles-tu ou reves-tu d'apprendre ?",type:"text",placeholder:"Ex : anglais, espagnol, japonais...",key:"v_langue"},
 ];
 
+// QUIZ ENNEAGRAMME
+var QS = [
+  {cat:"Motivation",q:"Ce qui vous pousse a agir au fond de vous, c'est avant tout...",o:[
+    {t:1,tx:"Le désir de bien faire et de corriger ce qui ne va pas."},
+    {t:2,tx:"L'envie d'être utile et de sentir que les autres ont besoin de moi."},
+    {t:3,tx:"La volonte de réussir et d'etre reconnu(e) pour mes accomplissements."},
+    {t:4,tx:"Le besoin de m'exprimer authentiquement et d'etre compris(e)."},
+    {t:5,tx:"La soif de comprendre, d'analyser et de maîtriser la connaissance."},
+    {t:6,tx:"Le besoin de sécurité et de pouvoir faire confiance a mon entourage."},
+    {t:7,tx:"L'envie de vivre des expériences nouvelles et de rester libre."},
+    {t:8,tx:"Le désir de contrôler ma vie et de ne jamais dependre de personne."},
+    {t:9,tx:"La recherche de paix interieure et d'harmonie avec les autres."}
+  ]},
+  {cat:"Motivation",q:"Dans votre vie quotidienne, vous cherchez surtout a...",o:[
+    {t:1,tx:"Ameliorer les choses et agir selon mes valeurs."},
+    {t:2,tx:"Creer des liens chaleureux et prendre soin des autres."},
+    {t:3,tx:"Atteindre mes objectifs et progresser vers le succes."},
+    {t:4,tx:"Trouver la beaute, la profondeur et ce qui est unique."},
+    {t:5,tx:"Comprendre le monde et preserver mon espace de reflexion."},
+    {t:6,tx:"Construire des relations fiables et anticiper les risques."},
+    {t:7,tx:"Multiplier les expériences positives et éviter l'ennui."},
+    {t:8,tx:"Affirmer ma volonte et protéger ceux qui comptent pour moi."},
+    {t:9,tx:"Maintenir la paix et éviter les tensions inutiles."}
+  ]},
+  {cat:"Motivation",q:"Ce dont vous avez le plus besoin pour vous sentir bien...",o:[
+    {t:1,tx:"Sentir que j'ai agi avec intégrité et que les choses sont bien faites."},
+    {t:2,tx:"Sentir que je suis aime(e) et que mon aide est appréciée."},
+    {t:3,tx:"Sentir que je progresse et que mes efforts sont reconnus."},
+    {t:4,tx:"Sentir que je suis vu(e) dans ma singularite et ma profondeur."},
+    {t:5,tx:"Avoir du temps seul(e) pour penser, lire et me ressourcer."},
+    {t:6,tx:"Avoir des personnes de confiance sur qui je peux compter."},
+    {t:7,tx:"Avoir des projets excitants et la liberté de les poursuivre."},
+    {t:8,tx:"Avoir le contrôlé de ma vie et etre respecte(e)."},
+    {t:9,tx:"Vivre dans un environnement calme et sans conflit."}
+  ]},
+  {cat:"Motivation",q:"La phrase qui resonne le plus profondément en vous...",o:[
+    {t:1,tx:"Bien faire ou ne pas faire."},
+    {t:2,tx:"L'amour se prouve par les actes."},
+    {t:3,tx:"Le succes est la meilleure reponse."},
+    {t:4,tx:"Je suis unique, et c'est ma force."},
+    {t:5,tx:"Savoir, c'est pouvoir."},
+    {t:6,tx:"La confiance se mérite et se construit."},
+    {t:7,tx:"La vie est trop courte pour s'ennuyer."},
+    {t:8,tx:"Je ne plie pas, je ne cède pas."},
+    {t:9,tx:"Tout finit par s'arranger si on laisse faire."}
+  ]},
+  {cat:"Motivation",q:"Ce qui vous donne le plus de sens dans la vie...",o:[
+    {t:1,tx:"Contribuer a quelque chose de juste et de bien accompli."},
+    {t:2,tx:"Être là pour les autres et créer des liens profonds."},
+    {t:3,tx:"Reussir et laisser une trace de mes accomplissements."},
+    {t:4,tx:"Creer, ressentir intensement, etre pleinement moi-meme."},
+    {t:5,tx:"Comprendre le monde en profondeur et partager ce savoir."},
+    {t:6,tx:"Etre loyal(e) et faire partie d'un groupe de confiance."},
+    {t:7,tx:"Explorer, decouvrir et vivre chaque moment pleinement."},
+    {t:8,tx:"Avoir un impact réel et protéger ce qui compte pour moi."},
+    {t:9,tx:"Vivre en harmonie et permettre a chacun d'etre soi-meme."}
+  ]},
+  {cat:"Peurs",q:"Ce que vous redoutez le plus profondément...",o:[
+    {t:1,tx:"Mal faire, etre dans l'erreur ou manquer a mes principes."},
+    {t:2,tx:"Ne pas etre aime(e) ou etre percu(e) comme inutile."},
+    {t:3,tx:"Echouer ou etre percu(e) comme un(e) perdant(e)."},
+    {t:4,tx:"Etre ordinaire, banal(e), incompris(e) ou invisible."},
+    {t:5,tx:"Être incompétent(e), envahi(e) ou dependant(e) des autres."},
+    {t:6,tx:"Etre abandonné(e), trahi(e) ou sans reperes fiables."},
+    {t:7,tx:"Être coincé(e), prive(e) de liberté ou de plaisir."},
+    {t:8,tx:"Etre contrôlé(e), dominé(e) ou trahi(e) par quelqu'un."},
+    {t:9,tx:"Le conflit, la separation ou perdre l'harmonie."}
+  ]},
+  {cat:"Peurs",q:"Votre talon d'Achille que vous reconnaissez honnетement...",o:[
+    {t:1,tx:"Je suis trop exigeant(e) envers moi-meme et les autres."},
+    {t:2,tx:"J'ai du mal a dire non et je m'oublie pour les autres."},
+    {t:3,tx:"Je peux etre trop focalise(e) sur l'image que je renvoie."},
+    {t:4,tx:"Je me perds parfois dans ma mélancolie et mon intensité."},
+    {t:5,tx:"Je peux me couper du monde et vivre trop dans ma tete."},
+    {t:6,tx:"Je doute trop et je peux me paralyser par l'anxiété."},
+    {t:7,tx:"Je fuis l'inconfort et les émotions difficiles."},
+    {t:8,tx:"Je peux etre trop intense et blessér sans le vouloir."},
+    {t:9,tx:"Je m'effacé trop et j'évite de m'affirmer."}
+  ]},
+  {cat:"Peurs",q:"Sous stress intense, vous avez tendance a...",o:[
+    {t:1,tx:"Devenir encore plus rigide et critique envers tout."},
+    {t:2,tx:"Devenir possessif(ve) sans m'en rendre compte."},
+    {t:3,tx:"Accelerer encore plus et masquer ce que je ressens vraiment."},
+    {t:4,tx:"Me replier sur moi-meme et amplifier ma souffrance."},
+    {t:5,tx:"Me retrancher dans l'isolément et couper les contacts."},
+    {t:6,tx:"Imaginer le pire scenario et perdre confiance en tout."},
+    {t:7,tx:"Me disperser et fuir dans l'agitation."},
+    {t:8,tx:"Devenir dominateur(trice) et imposer ma volonte."},
+    {t:9,tx:"Me replier et attendre que la tempete passe."}
+  ]},
+  {cat:"Peurs",q:"Ce qui vous met vraiment en colere ou vous blessé...",o:[
+    {t:1,tx:"L'injustice, la malhonnêtete et le travail bacle."},
+    {t:2,tx:"Donner beaucoup et sentir que ce n'est pas reconnu."},
+    {t:3,tx:"Etre sous-estime(e) ou ne pas obtenir la reconnaissance méritee."},
+    {t:4,tx:"Ne pas etre vu(e) ou compris(e) dans ma singularite."},
+    {t:5,tx:"Etre interrompu(e), envahi(e) ou infantilise(e)."},
+    {t:6,tx:"La trahison, les mensonges et les personnes peu fiables."},
+    {t:7,tx:"Etre limite(e), contrôlé(e) ou force(e) a rester en place."},
+    {t:8,tx:"La manipulation, la lachete et les rapports de forcé deguises."},
+    {t:9,tx:"Les conflits inutiles et les personnes qui creent de l'agitation."}
+  ]},
+  {cat:"Peurs",q:"Ce dont vous avez le plus de mal a vous defaire...",o:[
+    {t:1,tx:"Mon perfectionnisme et mon intransigeance envers moi-meme."},
+    {t:2,tx:"Mon besoin d'etre necessaire aux autres."},
+    {t:3,tx:"L'image que je renvoie et le besoin d'etre admire(e)."},
+    {t:4,tx:"Le sentiment qu'il me manque quelque chose d'essentiel."},
+    {t:5,tx:"Mon besoin de tout comprendre avant d'agir."},
+    {t:6,tx:"Mes doutes et ma méfiance envers les autres."},
+    {t:7,tx:"Mon besoin de nouveaute et ma peur de m'ennuyer."},
+    {t:8,tx:"Mon besoin de contrôlé et ma resistance a la vulnérabilité."},
+    {t:9,tx:"Ma tendance a procrastiner et a éviter les decisions difficiles."}
+  ]},
+  {cat:"Relations",q:"Dans une relation proche, ce que vous offrez naturellement...",o:[
+    {t:1,tx:"Fiabilite, honnêtete et un soutien structure et coherent."},
+    {t:2,tx:"Presence, chaleur et capacité a anticiper les besoins de l'autre."},
+    {t:3,tx:"Enthousiasme, encouragements et aide pour progresser."},
+    {t:4,tx:"Ecoute profonde, empathie rare et honnêtete émotionnelle."},
+    {t:5,tx:"Analyse fine, conseils pertinents et respect de l'espace."},
+    {t:6,tx:"Loyaute absolue et fiabilité sans faille dans la durée."},
+    {t:7,tx:"Legerete, créativité et une énergie qui rend la vie plus belle."},
+    {t:8,tx:"Protection, franchise totale et engagément sans demi-mesure."},
+    {t:9,tx:"Ecoute sans jugement, acceptation et apaisement naturel."}
+  ]},
+  {cat:"Relations",q:"Ce dont vous avez besoin dans une relation pour vous sentir en sécurité...",o:[
+    {t:1,tx:"Que l'autre soit coherent(e) entre ses paroles et ses actes."},
+    {t:2,tx:"Que l'autre me montre qu'il(elle) a besoin de moi et m'apprécié."},
+    {t:3,tx:"Que l'autre me soutienne dans mes projets et me respecte."},
+    {t:4,tx:"Que l'autre me voie vraiment - pas juste la surface."},
+    {t:5,tx:"Que l'autre respecte mon espace, mon rythme et ma profondeur."},
+    {t:6,tx:"Que l'autre soit fiable, transparent(e) et loyal(e)."},
+    {t:7,tx:"Que l'autre soit ouvert(e), leger(e) et ne me cantonne pas a une case."},
+    {t:8,tx:"Que l'autre soit honnête et ne cherche pas a me manipulér."},
+    {t:9,tx:"Que l'autre soit doux(ce), patient(e) et ne cree pas de tension."}
+  ]},
+  {cat:"Relations",q:"Votre facon de gerer un conflit avec quelqu'un d'important pour vous...",o:[
+    {t:1,tx:"Je le nomme clairement et je cherche a rectifier ce qui est injuste."},
+    {t:2,tx:"Je cherche a preserver la relation, souvent au detriment de mes besoins."},
+    {t:3,tx:"Je trouve rapidement une solution pragmatique pour avancer."},
+    {t:4,tx:"Je le vis intensement et j'ai besoin de temps pour digerer."},
+    {t:5,tx:"Je prends du recul, j'analyse la situation avant d'agir."},
+    {t:6,tx:"Je questionne, je verifie les intentions et je cherche des garanties."},
+    {t:7,tx:"J'essaie de le dépassér rapidement pour retrouver une ambiance legere."},
+    {t:8,tx:"Je dis les choses directement, meme si c'est difficile a entendre."},
+    {t:9,tx:"J'essaie de comprendre tous les points de vue avant de reagir."}
+  ]},
+  {cat:"Relations",q:"Votre peur la plus profonde dans une relation...",o:[
+    {t:1,tx:"Être perçu(e) comme imparfait(e) ou peu fiable."},
+    {t:2,tx:"Ne pas etre aime(e) pour ce que je suis, seulement pour ce que je fais."},
+    {t:3,tx:"Être perçu(e) comme un(e) perdant(e) ou perdre le respect de l'autre."},
+    {t:4,tx:"Rester incompris(e), invisible ou remplacable."},
+    {t:5,tx:"Être envahi(e), dependant(e) ou perdre mon autonomie."},
+    {t:6,tx:"Etre trahi(e) ou abandonné(e) par quelqu'un en qui j'avais confiance."},
+    {t:7,tx:"Etre piégé(e) dans une relation etouffante sans liberté."},
+    {t:8,tx:"Etre dominé(e), manipulé(e) ou trahi(e) par quelqu'un de proche."},
+    {t:9,tx:"Creer un conflit irreparable ou perdre l'harmonie définitivement."}
+  ]},
+  {cat:"Relations",q:"Ce qui vous attire le plus chez une personne que vous rencontrez...",o:[
+    {t:1,tx:"Son intégrité et sa coherence entre ses valeurs et ses actes."},
+    {t:2,tx:"Sa chaleur, sa générosité et son attention aux autres."},
+    {t:3,tx:"Son ambition, son énergie et sa facon de réussir."},
+    {t:4,tx:"Sa profondeur, son originalité et son authenticité."},
+    {t:5,tx:"Son intelligence, sa curiosité et sa richesse interieure."},
+    {t:6,tx:"Sa loyauté, sa fiabilité et sa franchise."},
+    {t:7,tx:"Son enthousiasme, sa créativité et sa joie de vivre."},
+    {t:8,tx:"Son assurance, sa forcé et son authenticité brute."},
+    {t:9,tx:"Sa douceur, sa sérénité et son ouverture d'esprit."}
+  ]},
+  {cat:"Vision",q:"Votre vision du monde est fondamentalement...",o:[
+    {t:1,tx:"Le monde pourrait etre bien meilleur si les gens faisaient les choses correctement."},
+    {t:2,tx:"Le monde a besoin de plus d'amour, de soin et de connexion humaine."},
+    {t:3,tx:"Le monde recompense ceux qui travaillent dur et se donnent les moyens de réussir."},
+    {t:4,tx:"Le monde est souvent superficiel ; je cherche la profondeur et l'authenticité."},
+    {t:5,tx:"Le monde est complexe et mérite d'etre compris avant d'etre juge."},
+    {t:6,tx:"Le monde peut etre dangereux et il faut savoir a qui faire confiance."},
+    {t:7,tx:"Le monde est plein de possibilités et d'aventures a saisir."},
+    {t:8,tx:"Le monde appartient a ceux qui osent ; les autres suivent."},
+    {t:9,tx:"Le monde est acceptable tel qu'il est si on sait y trouver la paix."}
+  ]},
+  {cat:"Vision",q:"Ce que vous croyez profondément sur la nature humaine...",o:[
+    {t:1,tx:"Les gens peuvent s'améliorer s'ils font preuve de volonte et de discipline."},
+    {t:2,tx:"Les gens ont fondamentalement besoin d'amour et de connexion."},
+    {t:3,tx:"Les gens sont motives par la réussite et la reconnaissance."},
+    {t:4,tx:"Les gens sont plus complexes et plus profonds qu'ils ne le montrent."},
+    {t:5,tx:"Les gens sont souvent influencables ; il faut penser par soi-meme."},
+    {t:6,tx:"La loyauté et la confiance sont rares mais sont la base de tout."},
+    {t:7,tx:"Les gens s'epanouissent quand ils sont libres et joyeux."},
+    {t:8,tx:"Le monde appartient a ceux qui ont le courage d'agir."},
+    {t:9,tx:"Les gens méritent d'etre acceptes tels qu'ils sont."}
+  ]},
+  {cat:"Vision",q:"Pour vous, la liberté c'est avant tout...",o:[
+    {t:1,tx:"Agir selon mes valeurs sans compromis ni trahison de moi-meme."},
+    {t:2,tx:"Pouvoir donner librement sans me sentir oblige(e) de le faire."},
+    {t:3,tx:"Avoir les moyens de mes ambitions sans dependre de personne."},
+    {t:4,tx:"Être fidèle a moi-meme, sans me trahir pour plaire aux autres."},
+    {t:5,tx:"Penser par moi-meme et ne dependre d'aucune influence exterieure."},
+    {t:6,tx:"Avoir un cadre sur dans lequel je peux m'épanouir librement."},
+    {t:7,tx:"Pouvoir aller ou je veux, quand je veux, sans contrainte."},
+    {t:8,tx:"Avoir le pouvoir de décider de ma vie sans rendre de comptes."},
+    {t:9,tx:"Vivre sans pression, sans conflit, en accord avec moi-meme."}
+  ]},
+  {cat:"Vision",q:"Ce que vous pensez du changement...",o:[
+    {t:1,tx:"Il est bienvenu s'il ameliore vraiment les choses de facon tangible."},
+    {t:2,tx:"Je m'y adapté si cela aide les gens que j'aime."},
+    {t:3,tx:"Je l'embrasse s'il m'aide a progresser vers mes objectifs."},
+    {t:4,tx:"Il m'interesse s'il apporte de la profondeur et de l'authenticité."},
+    {t:5,tx:"Je l'analyse d'abord pour comprendre ses implications."},
+    {t:6,tx:"Je m'y adapté progressivement, apres avoir verifie que c'est fiable."},
+    {t:7,tx:"Il m'attire naturellement - la routine m'ennuie profondément."},
+    {t:8,tx:"Je l'impulse moi-meme - subir le changement ne m'interesse pas."},
+    {t:9,tx:"Je m'y adapté doucement, j'ai besoin de temps pour integrer."}
+  ]},
+  {cat:"Vision",q:"Votre rapport au temps est plutot...",o:[
+    {t:1,tx:"Structure : les retards et le desordre m'irritent profondément."},
+    {t:2,tx:"Flexible : je m'adapté aux besoins et au rythme des autres."},
+    {t:3,tx:"Oriente vers l'avenir : mes objectifs me guident au quotidien."},
+    {t:4,tx:"Melancolique parfois : le passe a du poids et de la beaute pour moi."},
+    {t:5,tx:"Reflechi : je prends le temps qu'il faut pour bien comprendre."},
+    {t:6,tx:"Prudent : j'anticipe les risques pour ne pas etre pris(e) de court."},
+    {t:7,tx:"Tourne vers l'avenir avec enthousiasme et curiosité."},
+    {t:8,tx:"Ancre dans le present : j'agis maintenant et j'assume."},
+    {t:9,tx:"Calme : je vis au rythme des choses, sans me presser."}
+  ]},
+  {cat:"Caractere",q:"Ce que les gens qui vous connaissent bien diraient de vous...",o:[
+    {t:1,tx:"Rigoureux(se), fiable, parfois trop exigeant(e) avec soi-meme."},
+    {t:2,tx:"Genereux(se), attentionne(e), parfois trop present(e)."},
+    {t:3,tx:"Ambitieux(se), charismatique, parfois trop focalise(e) sur les resultats."},
+    {t:4,tx:"Profond(e), créatif(ve), parfois trop dans la tete ou mélancolique."},
+    {t:5,tx:"Intelligent(e), discret(e), parfois trop distant(e) ou froid(e)."},
+    {t:6,tx:"Loyal(e), fiable, parfois trop anxieux(se) ou méfiant(e)."},
+    {t:7,tx:"Drole, enthousiaste, parfois trop disperse(e) ou superficiel(le)."},
+    {t:8,tx:"Fort(e), direct(e), parfois trop intense ou intimidant(e)."},
+    {t:9,tx:"Doux(ce), paisible, parfois trop passif(ve) ou effacé(e)."}
+  ]},
+  {cat:"Caractere",q:"Comment te définirais-tu en une seule phrase ?",o:[
+    {t:1,tx:"Je suis quelqu'un qui cherche a bien faire dans un monde imparfait."},
+    {t:2,tx:"Je suis quelqu'un qui donne de l'amour et prend soin des autres."},
+    {t:3,tx:"Je suis quelqu'un qui avance, réussit et inspire par l'exemple."},
+    {t:4,tx:"Je suis quelqu'un d'unique qui ressent le monde plus intensement que les autres."},
+    {t:5,tx:"Je suis quelqu'un qui observe, comprend et pense avant d'agir."},
+    {t:6,tx:"Je suis quelqu'un de loyal qui a besoin de confiance pour s'épanouir."},
+    {t:7,tx:"Je suis quelqu'un qui aime la vie et cherche a en profiter pleinement."},
+    {t:8,tx:"Je suis quelqu'un de fort qui protège ce qui compte et dit la vérité."},
+    {t:9,tx:"Je suis quelqu'un de pacifique qui cherche l'harmonie et accepte les autres."}
+  ]},
+  {cat:"Caractere",q:"Ce dont vous etes le plus fier(e) en vous...",o:[
+    {t:1,tx:"Mon intégrité et ma capacité a agir selon mes valeurs."},
+    {t:2,tx:"Ma générosité et mon empathie profonde pour les autres."},
+    {t:3,tx:"Mon efficacité, mon adaptabilite et ma capacité a réussir."},
+    {t:4,tx:"Ma sensibilité rare et mon authenticité dans les relations."},
+    {t:5,tx:"Ma capacité a analyser, comprendre et voir ce que les autres ratent."},
+    {t:6,tx:"Ma loyauté et la profondeur de mes engagéments."},
+    {t:7,tx:"Mon optimisme, ma créativité et ma capacité a ouvrir des possibles."},
+    {t:8,tx:"Mon courage et ma capacité a dire la vérité sans detour."},
+    {t:9,tx:"Ma capacité a écouter sans juger et a apaiser les tensions."}
+  ]},
+  {cat:"Caractere",q:"Votre rapport a la critique recue...",o:[
+    {t:1,tx:"Je l'accueille si elle est juste - j'ai moi-meme des standards eleves."},
+    {t:2,tx:"Elle me touche beaucoup car j'ai besoin de me sentir appréciée."},
+    {t:3,tx:"Je l'analyse pour voir si elle peut m'aider a m'améliorer."},
+    {t:4,tx:"Elle me touche profondément, meme si j'essaie de n'en rien montrer."},
+    {t:5,tx:"Je l'analyse froidement pour voir si elle est fondee ou non."},
+    {t:6,tx:"Je l'examine pour voir si elle cache une vérité que j'aurais ratee."},
+    {t:7,tx:"Je prefere passer rapidement a autre chose plutot que de m'y attarder."},
+    {t:8,tx:"Elle glisse sur moi si elle n'est pas legitime."},
+    {t:9,tx:"Je l'accepte souvent trop facilement pour éviter le conflit."}
+  ]},
+  {cat:"Caractere",q:"Ce qui vous ressource le plus quand vous etes epuise(e)...",o:[
+    {t:1,tx:"Mettre de l'ordre dans mon environnement et faire quelque chose de bien fait."},
+    {t:2,tx:"Etre entoure(e) de personnes que j'aime et qui m'appréciént."},
+    {t:3,tx:"Accomplir quelque chose, meme petit, et constater des progres."},
+    {t:4,tx:"Etre seul(e) avec moi-meme, écouter de la musique ou créer."},
+    {t:5,tx:"Lire, me documenter et avoir du temps seul(e) pour penser."},
+    {t:6,tx:"Parler avec des personnes de confiance et retrouver des reperes."},
+    {t:7,tx:"Planifier quelque chose d'excitant et me plonger dans une nouvelle aventure."},
+    {t:8,tx:"Faire quelque chose de physique pour evacuer la tension."},
+    {t:9,tx:"Me reposer dans la nature, loin de toute agitation."}
+  ]},
+  {cat:"Valeurs",q:"La valeur qui guide votre vie plus que toute autre...",o:[
+    {t:1,tx:"L'intégrité - etre en accord avec ce que je crois etre juste."},
+    {t:2,tx:"L'amour - donner et recevoir de la connexion authentique."},
+    {t:3,tx:"L'excellence - donner le meilleur de soi en toutes circonstances."},
+    {t:4,tx:"L'authenticité - etre vrai(e), meme si c'est inconfortable."},
+    {t:5,tx:"La connaissance - comprendre le monde pour mieux y evoluer."},
+    {t:6,tx:"La loyauté - rester fidèle a ses engagéments et a ses proches."},
+    {t:7,tx:"La liberté - vivre sans contrainte et explorer tous les possibles."},
+    {t:8,tx:"La vérité - dire les choses telles qu'elles sont, sans detour."},
+    {t:9,tx:"La paix - interieure et dans mes relations avec les autres."}
+  ]},
+  {cat:"Valeurs",q:"Votre rapport a la vérité...",o:[
+    {t:1,tx:"Je la dis, meme si elle est difficile a entendre pour l'autre."},
+    {t:2,tx:"Je l'adapté parfois pour ne pas blessér ceux que j'aime."},
+    {t:3,tx:"Je l'utilise strategiquement pour avancer efficacement."},
+    {t:4,tx:"Je la recherche dans ma propre vie, surtout la vérité interieure."},
+    {t:5,tx:"Je la cherche avec rigueur, meme quand elle est derangeante."},
+    {t:6,tx:"Je la verifie toujours - je ne prends rien pour acquis."},
+    {t:7,tx:"Je prefere une vérité positive a une vérité qui plombe l'ambiance."},
+    {t:8,tx:"Je la dis, meme si elle blessé. La franchise est une forme de respect."},
+    {t:9,tx:"Je l'exprime avec douceur pour ne pas créer de conflit inutile."}
+  ]},
+  {cat:"Valeurs",q:"Ce que vous ne pourriez jamais accepter chez un(e) partenaire...",o:[
+    {t:1,tx:"Le mensonge, l'incoherence et le manque de rigueur morale."},
+    {t:2,tx:"L'ingratitude, l'indifference et le manque de reconnaissance."},
+    {t:3,tx:"La paresse, l'absence d'ambition et le manque de respect."},
+    {t:4,tx:"La superficialite, le manque d'empathie et l'absence de profondeur."},
+    {t:5,tx:"L'intrusion, le manque de respect de mon espace et la dependance."},
+    {t:6,tx:"La trahison, le mensonge et le manque de fiabilité."},
+    {t:7,tx:"La jalousie maladive, le contrôlé excessif et l'etouffement."},
+    {t:8,tx:"La manipulation, la lachete et le manque de franchise."},
+    {t:9,tx:"L'agressivite, la violence verbale et la creation de tensions constantes."}
+  ]},
+  {cat:"Resilience",q:"Face a une grande épreuve, votre ressource interieure principale...",o:[
+    {t:1,tx:"Ma discipline, mon sens du devoir et ma capacité a structurer."},
+    {t:2,tx:"Mon empathie et ma capacité a m'appuyer sur mes proches."},
+    {t:3,tx:"Mon énergie, ma determination et ma capacité a rebondir."},
+    {t:4,tx:"Ma profondeur émotionnelle et ma capacité a donner du sens a la douleur."},
+    {t:5,tx:"Mon calme interieur et ma capacité a analyser froidement la situation."},
+    {t:6,tx:"Mes relations de confiance et ma capacité a anticiper les risques."},
+    {t:7,tx:"Mon optimisme et ma capacité a trouver le positif en toute situation."},
+    {t:8,tx:"Ma force, ma volonte et ma determination a ne pas me laisser abattre."},
+    {t:9,tx:"Ma capacité a accepter ce que je ne peux pas changer."}
+  ]},
+  {cat:"Amour",q:"Votre idéal de relation amoureuse...",o:[
+    {t:1,tx:"Une relation stable, honnête et construite sur des valeurs communes."},
+    {t:2,tx:"Une relation fusionnelle ou l'on prend soin l'un(e) de l'autre."},
+    {t:3,tx:"Une relation stimulante ou l'on se pousse mutuellement a evoluer."},
+    {t:4,tx:"Une relation profonde et intense ou l'on se comprend vraiment."},
+    {t:5,tx:"Une relation respectueuse ou chacun(e) garde son espace et son indépendance."},
+    {t:6,tx:"Une relation de confiance totale ou l'on peut compter sur l'autre."},
+    {t:7,tx:"Une relation legere, joyeuse et pleine d'aventures partagees."},
+    {t:8,tx:"Une relation passionnee et honnête ou l'on peut etre pleinement soi-meme."},
+    {t:9,tx:"Une relation paisible et harmonieuse ou l'on accepte l'autre tel(le) qu'il(elle) est."}
+  ]},
+  {cat:"Amour",q:"Comment vous sentez-vous par rapport a l'idee de vivre ensemble ?",o:[
+    {t:1,tx:"Pret(e) si l'autre partage mes valeurs et respecte mon organisation."},
+    {t:2,tx:"Enthousiaste - créer un foyer et prendre soin de l'autre me comble."},
+    {t:3,tx:"Pret(e) si ca ne freine pas mon développement personnel."},
+    {t:4,tx:"Ouvert(e) si l'autre respecte ma singularite et mon espace créatif."},
+    {t:5,tx:"Possible si chacun(e) garde son espace personnel et son indépendance."},
+    {t:6,tx:"Rassurant(e) si la confiance est vraiment établie entre nous."},
+    {t:7,tx:"Oui, si la vie commune reste legere et pleine d'aventures."},
+    {t:8,tx:"Pret(e) si c'est un choix libre et non une obligation subie."},
+    {t:9,tx:"Naturellement - j'aime l'idee de construire quelque chose ensemble."}
+  ]},
+  {cat:"Amour",q:"Ce qui vous ferait vous sentir vraiment epanoui(e) dans une relation...",o:[
+    {t:1,tx:"Être avec quelqu'un d'integre qui me respecte et partage mes principes."},
+    {t:2,tx:"Me sentir aime(e), appréciée et necessaire a l'autre."},
+    {t:3,tx:"Être avec quelqu'un qui croit en moi et m'aide a me surpasser."},
+    {t:4,tx:"Être vraiment vu(e), compris(e) et accepte(e) dans toute ma complexité."},
+    {t:5,tx:"Avoir un(e) partenaire intellectuellement stimulant(e) qui respecte mon espace."},
+    {t:6,tx:"Avoir une relation de confiance absolue ou je peux tout dire."},
+    {t:7,tx:"Vivre une relation riche en expériences, en rires et en liberté."},
+    {t:8,tx:"Être avec quelqu'un d'honnête qui peut me tenir tete sans me trahir."},
+    {t:9,tx:"Vivre dans une relation sereine ou je peux etre pleinement moi-meme."}
+  ]},
+  {cat:"Quotidien",q:"Votre facon de prendre des decisions importantes...",o:[
+    {t:1,tx:"Je pese le pour et le contre selon mes valeurs et mes principes."},
+    {t:2,tx:"Je pense d'abord a l'impact sur les personnes que j'aime."},
+    {t:3,tx:"Je choisis ce qui me rapproche le plus de mes objectifs."},
+    {t:4,tx:"Je suis mon intuition et ce qui resonne profondément en moi."},
+    {t:5,tx:"J'analyse toutes les donnees avant de trancher."},
+    {t:6,tx:"Je cherche l'avis de personnes de confiance avant de décider."},
+    {t:7,tx:"Je suis mon enthousiasme et je fais confiance a l'avenir."},
+    {t:8,tx:"Je décide rapidement sur la base de mon instinct et de ma volonte."},
+    {t:9,tx:"Je laisse les choses se clarifier naturellement avant d'agir."}
+  ]}
+];
 
-const typeLabels={question:"Question",action:"Action",affirmation:"Affirmation",joker:"Joker"};
-const grid=document.getElementById('grid');
-const countBar=document.getElementById('countBar');
+// PROFILS
+var P = {
+  1:{n:1,name:"Le Reformateur",sub:"L'intégrité comme boussole",desc:"Vous portez en vous un sens aigu du juste et de l'injuste, du bien fait et du neglige. Vous aspirez a l'excellence non par orgueil, mais parce que vous croyez sincèrerement que les choses méritent mieux. Votre rigueur est une forme d'amour exigeant du monde.",
+    traits:[{icon:"⚖️",label:"Force",val:"Integrite, précision, fiabilité absolue"},{icon:"🌀",label:"Point d'attention",val:"Tendance a se juger soi-meme avec sevérité"},{icon:"🔥",label:"Moteur interieur",val:"Le désir de rendre les choses meilleures"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Apprendre a accueillir l'imparfait"}],
+    apport:"Vous elevez le niveau de tout ce que vous touchez. La ou d'autres laissent flotter l'ambiguite, vous clarifiez.",
+    voisin:{n:9,name:"Le Mediateur",why:"Sa douceur apaise votre rigueur. Il(elle) vous accepte tel(le) que vous etes."},
+    compats:[{n:7,name:"L'Enthousiaste",why:"Son énergie libere votre sérieux.",lv:"lv-h",lb:"Tres compatible"},{n:2,name:"L'Altruiste",why:"Sa chaleur adoucit vos angles.",lv:"lv-h",lb:"Tres compatible"},{n:5,name:"L'Investigateur",why:"Deux esprits précis. Une profondeur intellectuelle partagee.",lv:"lv-m",lb:"Compatible"},{n:8,name:"Le Challenger",why:"Deux fortes tetes. La conversation sera riche.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 4 (L'Individualiste)</strong> : son intensité émotionnelle peut heurter votre sens de l'ordre."},
+  2:{n:2,name:"L'Altruiste",sub:"Donner est ma facon d'exister",desc:"Vous avez une antenne naturelle pour ce dont les autres ont besoin. Votre générosité n'est pas un calcul : c'est votre facon d'etre au monde. Mais au fond, vous cherchez aussi a etre pleinement vu(e) et aime(e) pour vous-meme.",
+    traits:[{icon:"💛",label:"Force",val:"Empathie profonde, générosité sans calcul"},{icon:"🌀",label:"Point d'attention",val:"S'oublier au profit des autres"},{icon:"🔥",label:"Moteur interieur",val:"Le besoin d'etre necessaire et aime(e)"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Apprendre a recevoir autant qu'a donner"}],
+    apport:"Vous creez le lien la ou il n'existe pas encore. Votre chaleur sincère ouvre des conversations que personne n'aurait osé commencer seul.",
+    voisin:{n:8,name:"Le Challenger",why:"Sa forcé directe et votre douceur se completent avec une précision etonnante."},
+    compats:[{n:9,name:"Le Mediateur",why:"Une douceur partagee, une sécurité mutuelle.",lv:"lv-h",lb:"Tres compatible"},{n:3,name:"L'Ambitieux",why:"Vous l'admirez, il(elle) se sent vu(e) grace a vous.",lv:"lv-h",lb:"Tres compatible"},{n:6,name:"Le Loyaliste",why:"Sa loyauté repond a votre besoin de confiance profonde.",lv:"lv-m",lb:"Compatible"},{n:5,name:"L'Investigateur",why:"Sa reserve peut vous frustrér, mais sa profondeur vous fascine.",lv:"lv-m",lb:"Compatible"}],
+    tension:"Votre principal defi est avec le <strong>Type 3 (L'Ambitieux)</strong> au long terme : vous donnez beaucoup, et il(elle) peut parfois oublier de reconnaitre ce que vous apportez."},
+  3:{n:3,name:"L'Ambitieux",sub:"L'excellence en mouvement",desc:"Vous avez une énergie qui attire les regards sans que vous le cherchiez. Adaptable, efficace, charismatique - vous savez instinctivement comment vous presenter. Derriere la performance se cache quelqu'un qui cherche a etre aime(e) pour qui il est vraiment.",
+    traits:[{icon:"⚡",label:"Force",val:"Efficacite, charisme, intelligence sociale"},{icon:"🌀",label:"Point d'attention",val:"Confondre l'image avec l'identité"},{icon:"🔥",label:"Moteur interieur",val:"Le désir d'etre reconnu(e) pour sa valeur"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Ralentir pour se retrouver soi-meme"}],
+    apport:"Vous donnez de l'elan. Votre confiance est contagieuse et donne aux autres la permission d'etre eux-memes.",
+    voisin:{n:6,name:"Le Loyaliste",why:"Sa prudence ancre votre enthousiasme. Il(elle) vous pose les vraies questions."},
+    compats:[{n:9,name:"Le Mediateur",why:"Sa sérénité vous permet de decrocher de la performance.",lv:"lv-h",lb:"Tres compatible"},{n:7,name:"L'Enthousiaste",why:"Deux énergies positives qui s'amplifient mutuellement.",lv:"lv-h",lb:"Tres compatible"},{n:1,name:"Le Reformateur",why:"Sa rigueur vous cadre sans vous etouffer.",lv:"lv-m",lb:"Compatible"},{n:4,name:"L'Individualiste",why:"Sa profondeur vous fascine et vous destabilise a la fois.",lv:"lv-m",lb:"Compatible"}],
+    tension:"Votre principal defi est avec le <strong>Type 4 (L'Individualiste)</strong> : sa mélancolie peut vous agacer - mais c'est précisément ce miroir dont vous avez besoin."},
+  4:{n:4,name:"L'Individualiste",sub:"La quete de l'authentique",desc:"Vous vivez les choses avec une intensité que peu de gens comprennent vraiment. Vous cherchez la beaute, la vérité, la profondeur. Vous avez le sentiment d'etre different(e) - et c'est précisément ce qui vous rend irreplacable.",
+    traits:[{icon:"🎨",label:"Force",val:"Profondeur émotionnelle, créativité, authenticité rare"},{icon:"🌀",label:"Point d'attention",val:"S'identifier a sa douleur plutot qu'a sa lumiere"},{icon:"🔥",label:"Moteur interieur",val:"Le désir d'etre pleinement vu(e) et compris(e)"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Accueillir l'ordinaire comme une forme de grace"}],
+    apport:"Vous posez les vraies questions. La ou la conversation reste en surface, vous l'emmenez naturellement vers quelque chose de plus riche.",
+    voisin:{n:9,name:"Le Mediateur",why:"Sa paix interieure équilibre votre intensité sans la reduire."},
+    compats:[{n:5,name:"L'Investigateur",why:"Une profondeur partagee, une curiosité mutuelle.",lv:"lv-h",lb:"Tres compatible"},{n:2,name:"L'Altruiste",why:"Sa chaleur vous sort de vous-meme avec douceur.",lv:"lv-h",lb:"Tres compatible"},{n:9,name:"Le Mediateur",why:"Son calme profond est un baume sur votre intensité.",lv:"lv-m",lb:"Compatible"},{n:3,name:"L'Ambitieux",why:"Son énergie vous sort de votre mélancolie.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 3 (L'Ambitieux)</strong> : vous percevez sa performance comme inauthentique. Pourtant, il(elle) vous ressemble plus que vous ne le pensez."},
+  5:{n:5,name:"L'Investigateur",sub:"Comprendre avant d'agir",desc:"Vous observez avant de parler. Vous pensez avant d'agir. Vous accumulez silencieusement une comprehension du monde que vous partagez avec parcimonie - ce qui rend chacune de vos interventions precieuse.",
+    traits:[{icon:"🔭",label:"Force",val:"Analyse fine, indépendance d'esprit, profondeur rare"},{icon:"🌀",label:"Point d'attention",val:"Se couper du monde pour se protéger"},{icon:"🔥",label:"Moteur interieur",val:"Le désir de comprendre et de maîtriser la connaissance"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Accepter d'etre touche(e) et de laisser entrer les autres"}],
+    apport:"Vous apportez la perspective que personne d'autre n'a eue. La ou la conversation tourne en rond, vous ouvrez un angle inattendu et juste.",
+    voisin:{n:2,name:"L'Altruiste",why:"Sa chaleur vous invite a sortir de votre monde interieur sans vous brusquer."},
+    compats:[{n:4,name:"L'Individualiste",why:"Une profondeur partagee. Deux esprits qui vont la ou les autres n'osent pas.",lv:"lv-h",lb:"Tres compatible"},{n:6,name:"Le Loyaliste",why:"La loyauté et l'analyse se completent.",lv:"lv-h",lb:"Tres compatible"},{n:9,name:"Le Mediateur",why:"Son calme vous repose. Vous n'avez pas besoin de performer.",lv:"lv-m",lb:"Compatible"},{n:7,name:"L'Enthousiaste",why:"Son ouverture stimule votre curiosité.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 2 (L'Altruiste)</strong> : son besoin de proximite peut vous sembler intrusif."},
+  6:{n:6,name:"Le Loyaliste",sub:"La confiance, absolue ou pas",desc:"Vous etes capable d'une loyauté totale envers ceux qui la méritent. Vous questionnez, vous anticipez, vous verifiez. Non par méfiance maladive, mais parce que vous voulez vous engagér pleinement avec les bonnes personnes.",
+    traits:[{icon:"🛡️",label:"Force",val:"Loyaute absolue, fiabilité, intelligence des risques"},{icon:"🌀",label:"Point d'attention",val:"Douter meme quand ce n'est pas necessaire"},{icon:"🔥",label:"Moteur interieur",val:"Le besoin de sécurité et d'appartenance vraie"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Apprendre a faire confiance a son propre jugement"}],
+    apport:"Vous apportez la profondeur relationnelle. Une fois que vous avez décide d'etre la, vous etes vraiment la, entierement.",
+    voisin:{n:9,name:"Le Mediateur",why:"Sa sérénité apaise vos questionnements sans les invalider."},
+    compats:[{n:2,name:"L'Altruiste",why:"Sa générosité repond a votre besoin de sentir que vous comptez.",lv:"lv-h",lb:"Tres compatible"},{n:5,name:"L'Investigateur",why:"Deux esprits analytiques qui se comprennent profondément.",lv:"lv-h",lb:"Tres compatible"},{n:1,name:"Le Reformateur",why:"Sa coherence et son intégrité vous rassurent.",lv:"lv-m",lb:"Compatible"},{n:8,name:"Le Challenger",why:"Sa franchise directe peut vous mettre sur la defensive, mais elle est honnête.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 7 (L'Enthousiaste)</strong> : son insouciance peut vous sembler irresponsable."},
+  7:{n:7,name:"L'Enthousiaste",sub:"La vie comme terrain de jeu",desc:"Vous avez une capacité rare a trouver la joie dans presque tout. Curieux(se), spontané(e), toujours en mouvement - vous apportez une énergie qui reveille les soirees et les gens.",
+    traits:[{icon:"✨",label:"Force",val:"Creativite, optimisme, énergie contagieuse"},{icon:"🌀",label:"Point d'attention",val:"Fuir l'inconfort et disperser son énergie"},{icon:"🔥",label:"Moteur interieur",val:"Le désir de vivre intensement et d'éviter la souffrance"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Accepter que la profondeur nécessité de rester en place"}],
+    apport:"Vous apportez la legerete et l'elan. Votre enthousiasme est sincère et contagieux - il donne aux autres la permission de s'amuser.",
+    voisin:{n:1,name:"Le Reformateur",why:"Sa structure canalise votre énergie sans l'etouffer."},
+    compats:[{n:3,name:"L'Ambitieux",why:"Deux énergies qui s'amplifient. La soiree sera memorable.",lv:"lv-h",lb:"Tres compatible"},{n:9,name:"Le Mediateur",why:"Sa douceur ancre votre agitation.",lv:"lv-h",lb:"Tres compatible"},{n:2,name:"L'Altruiste",why:"Sa chaleur et votre legerete creent une belle dynamique.",lv:"lv-m",lb:"Compatible"},{n:6,name:"Le Loyaliste",why:"Sa loyauté vous touche sincèrement.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 5 (L'Investigateur)</strong> : si vous ralentissez, vous trouverez en lui(elle) une profondeur qui vous manque."},
+  8:{n:8,name:"Le Challenger",sub:"La forcé au service du vrai",desc:"Vous n'avez pas peur de prendre de la place. Vous etes direct(e), puissant(e), protecteur(trice). Derriere votre intensité se cache souvent un cœur immense que vous protègez avec la meme force.",
+    traits:[{icon:"⚔️",label:"Force",val:"Courage, franchise totale, protection des autres"},{icon:"🌀",label:"Point d'attention",val:"Intimider sans le vouloir, refuser la vulnérabilité"},{icon:"🔥",label:"Moteur interieur",val:"Le besoin de contrôlé et de ne jamais etre trahi(e)"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Accepter que la vulnérabilité est une forme de force"}],
+    apport:"Vous apportez l'authenticité brute. Vous dites ce que les autres pensent sans oser le formuler.",
+    voisin:{n:2,name:"L'Altruiste",why:"Sa douceur desamorce votre intensité sans vous diminuer."},
+    compats:[{n:9,name:"Le Mediateur",why:"Sa paix est un contrepoids naturel a votre intensité.",lv:"lv-h",lb:"Tres compatible"},{n:6,name:"Le Loyaliste",why:"Sa loyauté repond a votre besoin de confiance absolue.",lv:"lv-h",lb:"Tres compatible"},{n:4,name:"L'Individualiste",why:"Sa profondeur touche quelque chose que vous protègez habituellement.",lv:"lv-m",lb:"Compatible"},{n:1,name:"Le Reformateur",why:"Riche si les valeurs s'alignent.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 2 (L'Altruiste)</strong> : son amour est sincère - apprenez a le recevoir."},
+  9:{n:9,name:"Le Mediateur",sub:"La paix comme vocation profonde",desc:"Vous avez un don rare : sentir l'énergie d'un groupe et la reguler sans jamais vous imposer. Votre presence apaisante est magnetique - les gens se confient a vous sans savoir pourquoi.",
+    traits:[{icon:"🌊",label:"Force",val:"Ecoute profonde, empathie totale, don pour l'harmonie"},{icon:"🌀",label:"Point d'attention",val:"S'effacér au point de perdre sa propre voix"},{icon:"🔥",label:"Moteur interieur",val:"Le besoin de paix interieure et de connexion sans conflit"},{icon:"🌿",label:"Ce dont vous avez besoin",val:"Apprendre a s'affirmer sans culpabilite"}],
+    apport:"Vous etes le liant invisible qui fait qu'une tablée devient un groupe. Votre écoute profonde est un cadeau rare.",
+    voisin:{n:3,name:"L'Ambitieux",why:"Son énergie vous porte sans vous brusquer. Vous lui offrez un espace de repos."},
+    compats:[{n:2,name:"L'Altruiste",why:"Une douceur partagee. Ensemble, vous creez un espace de grande chaleur.",lv:"lv-h",lb:"Tres compatible"},{n:7,name:"L'Enthousiaste",why:"Son elan vous sort de votre zone de confort. Vous l'ancrez.",lv:"lv-h",lb:"Tres compatible"},{n:4,name:"L'Individualiste",why:"Vous accueillez son intensité sans la fuir.",lv:"lv-m",lb:"Compatible"},{n:8,name:"Le Challenger",why:"Son intensité peut vous epuiser, mais sa protection vous touche.",lv:"lv-c",lb:"Complementaire"}],
+    tension:"Votre principal defi est avec le <strong>Type 1 (Le Reformateur)</strong> : c'est lui(elle) qui vous rappelle que votre voix mérite d'etre entendue."}
+};
 
-function buildCards(){
-  grid.innerHTML='';
-  cards.forEach((c,i)=>{
-    const w=document.createElement('div');
-    w.className='card-wrap'; w.dataset.type=c.type;
-    w.innerHTML=`
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="front-brand">Lili Karantez<br>Les Cœurs Solitaires</div>
-          <div style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:rgba(0,0,0,0.6);background:rgba(255,255,255,0.3);border:1.5px solid rgba(0,0,0,0.3);border-radius:100px;padding:5px 14px;margin-bottom:10px;">⛔ RÉSERVÉ AUX ADULTES · 18+</div>
-          <div class="front-deco"><div class="front-deco-line"></div><div class="front-deco-diamond"></div><div class="front-deco-line"></div></div>
-          <span class="front-icon">${c.icon}</span>
-          <div class="front-title">L'art de</div>
-          <div class="front-title-main">s'allumer</div>
-          <div class="front-deco"><div class="front-deco-line"></div><div class="front-deco-diamond"></div><div class="front-deco-line"></div></div>
-        </div>
-        <div class="card-back type-${c.type}">
-          <div class="back-top">
-            <div class="type-dot"></div>
-            <span class="type-lbl">${typeLabels[c.type]}</span>
-            <span class="card-num">${String(i+1).padStart(2,'0')}</span>
-          </div>
-          <div class="card-body">
-            <span class="card-icon">${c.icon}</span>
-            <div class="card-text">${c.text}</div>
-          </div>
-          <div class="ressenti-section">
-            <span class="ressenti-label">Cette carte vous a touché(e) ?</span>
-            <div class="stars" data-card="${i}">
-              <span class="star" data-val="1">★</span>
-              <span class="star" data-val="2">★</span>
-              <span class="star" data-val="3">★</span>
-              <span class="star" data-val="4">★</span>
-              <span class="star" data-val="5">★</span>
-            </div>
-            <textarea class="ressenti-text" placeholder="Notez votre ressenti…" rows="2"></textarea>
-          </div>
-          <div class="card-footer">
-            <div class="footer-top">
-              <span class="footer-brand">Lili Karantez · Les Cœurs Solitaires</span>
-              <span class="footer-num">${String(i+1).padStart(2,'0')}</span>
-            </div>
-            <div class="footer-legal">© Lili Karantez — Reproduction interdite · SIRET 40149331700069</div>
-          </div>
-        </div>
-      </div>`;
+// ETAT GLOBAL
+var profilCur = -1;
+var cur = 0, scores = {}, sel = null;
+for(var i=1;i<=9;i++) scores[i]=0;
+window._profilData = {};
+window._inscrit = '';
+window._prenom = '';
 
-    // Flip
-    w.addEventListener('click', e => {
-      if(e.target.classList.contains('star') || e.target.classList.contains('ressenti-text')) return;
-      w.classList.toggle('flipped');
-    });
-
-    // Stars
-    setTimeout(() => {
-      const stars = w.querySelectorAll('.star');
-      stars.forEach(star => {
-        star.addEventListener('click', e => {
-          e.stopPropagation();
-          const val = parseInt(star.dataset.val);
-          stars.forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= val));
-        });
-      });
-      w.querySelector('.ressenti-text').addEventListener('click', e => e.stopPropagation());
-    }, 0);
-
-    grid.appendChild(w);
-  });
+// NAVIGATION
+function showScreen(id) {
+  var screens = document.querySelectorAll('.screen');
+  for(var s=0;s<screens.length;s++){
+    screens[s].classList.remove('active');
+    screens[s].style.display='none';
+  }
+  var el = document.getElementById(id);
+  if(!el){ console.error('Screen not found: '+id); return; }
+  el.style.display = 'block';
+  setTimeout(function(){ el.classList.add('active'); }, 10);
+  window.scrollTo(0,0);
 }
 
-function filterCards(type){
-  let count=0;
-  document.querySelectorAll('.card-wrap').forEach(w=>{
-    const show=type==='all'||w.dataset.type===type;
-    w.classList.toggle('hidden',!show);
-    if(!show)w.classList.remove('flipped');
-    else count++;
-  });
-  const names={all:'cartes',question:'questions',action:'actions',affirmation:'affirmations',joker:'jokers'};
-  countBar.textContent=`${count} ${names[type]} affichée${count>1?'s':''} · Cliquez pour retourner`;
+// BOUTONS PRINCIPAUX
+window.onload = function() {
+  var b = document.getElementById('btn-embarquer');
+  if(b) b.onclick = function(){ showScreen('s-presentation'); };
+};
+
+// INSCRIPTION
+function selectInscrit(val, el) {
+  var opts = document.querySelectorAll('.inscrit-opt');
+  for(var i=0;i<opts.length;i++){
+    opts[i].style.borderColor = 'var(--border)';
+    var dot = opts[i].querySelector('.opt-dot');
+    if(dot){ dot.style.background=''; dot.style.borderColor='var(--muted)'; dot.innerHTML=''; }
+  }
+  el.style.borderColor = 'var(--gold)';
+  var dot = el.querySelector('.opt-dot');
+  if(dot){ dot.style.background='var(--gold)'; dot.style.borderColor='var(--gold)'; dot.innerHTML='<span style="width:5px;height:5px;background:var(--bg);border-radius:50%;display:block;margin:4px auto 0;"></span>'; }
+  window._inscrit = val;
+  document.getElementById('inscrit-error').style.display='none';
 }
 
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    filterCards(btn.dataset.type);
-  });
-});
+function nextInscrit() {
+  if(!window._inscrit){ document.getElementById('inscrit-error').style.display='block'; return; }
+  window._profilData['inscrit_soiree'] = window._inscrit;
+  showScreen('s-profil');
+  renderProfil();
+}
 
-buildCards();
+// PROFIL
+function backProfil() {
+  if(profilCur <= -1){ showScreen('s-inscrit'); return; }
+  if(profilCur === 0){ profilCur=-1; renderProfil(); return; }
+  profilCur--; renderProfil();
+}
+
+function renderProfil() {
+  var total = PROFIL_QS.length + 1;
+  var displayNum = profilCur === -1 ? 1 : profilCur + 2;
+  document.getElementById('profil-count').textContent = displayNum + ' / ' + total;
+  document.getElementById('profil-fill').style.width = ((displayNum / total) * 100) + '%';
+  document.getElementById('profil-error').style.display = 'none';
+  var field = document.getElementById('profil-field');
+
+  if(profilCur === -1) {
+    document.getElementById('profil-cat').textContent = 'Identite';
+    document.getElementById('profil-q').textContent = 'Pour commencer, parle-nous de toi';
+    field.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;"><input type="text" class="profil-input" id="pa-prenom" placeholder="Prenom *"><input type="text" class="profil-input" id="pa-nom" placeholder="Nom *"></div><input type="text" class="profil-input" id="pa-pseudo" placeholder="Pseudo (optionnel)" style="width:100%;margin-bottom:10px;"><div style="background:var(--brest-bg);border:1px solid var(--brest-border);border-radius:3px;padding:12px 16px;font-size:13px;color:var(--brest-light);">Questionnaire soiree Brest - Vendredi 27 mars - Theme Voyage</div>';
+    document.getElementById('profil-btn').textContent = 'Continuer';
+    return;
+  }
+
+  var q = PROFIL_QS[profilCur];
+  document.getElementById('profil-cat').textContent = q.cat;
+  document.getElementById('profil-q').textContent = q.q;
+
+  if(q.type === 'textarea') {
+    field.innerHTML = '<textarea class="profil-input" id="profil-answer" rows="4" placeholder="'+q.placeholder+'"></textarea>';
+  } else if(q.type === 'radio') {
+    var html = '<div style="display:flex;flex-direction:column;gap:9px;">';
+    for(var oi=0;oi<q.opts.length;oi++){
+      html += '<label style="display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:3px;padding:13px 16px;cursor:pointer;"><input type="radio" name="pr-'+q.key+'" value="'+q.opts[oi].v+'" style="accent-color:var(--gold);width:15px;height:15px;flex-shrink:0;"> <span style="font-size:14px;color:var(--cream);">'+q.opts[oi].l+'</span></label>';
+    }
+    html += '</div>';
+    field.innerHTML = html;
+  } else {
+    field.innerHTML = '<input type="text" class="profil-input" id="profil-answer" placeholder="'+q.placeholder+'">';
+  }
+
+  document.getElementById('profil-btn').textContent = profilCur === PROFIL_QS.length-1 ? 'Passer au test' : 'Continuer';
+  setTimeout(function(){ var el=document.getElementById('profil-answer'); if(el) el.focus(); }, 80);
+}
+
+function nextProfil() {
+  document.getElementById('profil-error').style.display = 'none';
+  if(profilCur === -1) {
+    var prenom = document.getElementById('pa-prenom').value.trim();
+    var nom = document.getElementById('pa-nom').value.trim();
+    if(!prenom || !nom){ document.getElementById('profil-error').textContent='Merci de remplir prenom et nom.'; document.getElementById('profil-error').style.display='block'; return; }
+    window._profilData['prenom_profil']=prenom; window._profilData['nom']=nom; window._profilData['pseudo']=document.getElementById('pa-pseudo').value.trim()||prenom;
+    profilCur=0; renderProfil(); return;
+  }
+  var q = PROFIL_QS[profilCur];
+  var val = '';
+  if(q.type==='radio'){
+    var checked=document.querySelector('input[name="pr-'+q.key+'"]:checked');
+    if(!checked){ document.getElementById('profil-error').textContent='Merci de choisir une reponse.'; document.getElementById('profil-error').style.display='block'; return; }
+    val=checked.value;
+  } else {
+    val=document.getElementById('profil-answer').value.trim();
+    if(!val){ document.getElementById('profil-error').style.display='block'; return; }
+  }
+  window._profilData[q.key]=val;
+  profilCur++;
+  if(profilCur < PROFIL_QS.length){ renderProfil(); } else { startQuiz(); }
+}
+
+// QUIZ
+function backQ() {
+  if(cur===0){ showScreen('s-profil'); profilCur=PROFIL_QS.length-1; renderProfil(); return; }
+  cur--; renderQ();
+}
+
+function startQuiz() { cur=0; sel=null; showScreen('s-quiz'); renderQ(); }
+
+function renderQ() {
+  var q = QS[cur];
+  document.getElementById('prog-count').textContent=(cur+1)+' / '+QS.length;
+  document.getElementById('prog-fill').style.width=((cur/QS.length)*100)+'%';
+  document.getElementById('prog-label').textContent=q.cat;
+  document.getElementById('cat-tag').textContent=q.cat;
+  document.getElementById('q-text').textContent=q.q;
+  var html='';
+  for(var oi=0;oi<q.o.length;oi++){
+    html+='<div class="opt" onclick="pickOpt(this,'+q.o[oi].t+')"><div class="opt-dot"></div><div class="opt-text">'+q.o[oi].tx+'</div></div>';
+  }
+  document.getElementById('opts').innerHTML=html;
+  sel=null;
+  var btn=document.getElementById('btn-next');
+  btn.classList.remove('show');
+  btn.textContent=cur===QS.length-1?'Revelez mon profil':'Continuer';
+}
+
+function pickOpt(el,type) {
+  var opts=document.querySelectorAll('.opt');
+  for(var i=0;i<opts.length;i++) opts[i].classList.remove('sel');
+  el.classList.add('sel'); sel=type;
+  document.getElementById('btn-next').classList.add('show');
+}
+
+function nextQ() {
+  if(sel===null) return;
+  scores[sel]++; cur++;
+  if(cur<QS.length){ renderQ(); } else { showScreen('s-capture'); }
+}
+
+function getTopType() {
+  var top=1,max=0;
+  for(var t=1;t<=9;t++){ if(scores[t]>max){ max=scores[t]; top=t; } }
+  return top;
+}
+
+// CAPTURE
+function submitCapture() {
+  var prenom=document.getElementById('inp-prenom').value.trim();
+  var email=document.getElementById('inp-email').value.trim();
+  var rgpd=document.getElementById('inp-rgpd').checked;
+  if(!prenom||!email||email.indexOf('@')<0){ document.getElementById('cap-error').style.display='block'; return; }
+  document.getElementById('cap-error').style.display='none';
+  if(!rgpd){ document.getElementById('rgpd-error').style.display='block'; return; }
+  document.getElementById('rgpd-error').style.display='none';
+  window._prenom=prenom;
+  var fd=new FormData();
+  fd.append('prenom',prenom); fd.append('email',email);
+  fd.append('evenement','Diner Brest 27 mars Theme Voyage');
+  fd.append('inscrit',window._inscrit||'');
+  fd.append('type',getTopType()+' - '+P[getTopType()].name);
+  fd.append('relation',document.getElementById('inp-relation').checked);
+  fd.append('newsletter',document.getElementById('inp-newsletter').checked);
+  var pd=window._profilData||{};
+  var keys=Object.keys(pd); for(var k=0;k<keys.length;k++) fd.append(keys[k],pd[keys[k]]);
+  fetch('https://formspree.io/f/xvzwpavv',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(function(e){console.error(e);});
+  showResult();
+}
+
+// RESULTAT
+function showResult() {
+  var top=getTopType(), p=P[top], prenom=window._prenom||'', dejaInscrit=(window._inscrit==='oui');
+  var el=document.getElementById('s-result');
+  el.innerHTML=
+    '<div class="res-hero">'+
+      '<div class="type-bg-num">'+p.n+'</div>'+
+      '<div class="res-eyebrow">Votre type Enneagramme</div>'+
+      '<div class="res-name">'+p.name+'</div>'+
+      '<div class="res-sub">'+p.sub+'</div>'+
+      '<p class="res-desc">'+p.desc+'</p>'+
+    '</div>'+
+    '<div class="res-section"><div class="sec-title">Votre architecture interieure</div><div class="traits-grid">'+
+      p.traits.map(function(tr){return '<div class="trait"><div class="trait-icon">'+tr.icon+'</div><div class="trait-label">'+tr.label+'</div><div class="trait-val">'+tr.val+'</div></div>';}).join('')+
+    '</div></div>'+
+    '<div class="res-section"><div class="sec-title">Ce que vous apportez aux autres</div><div class="box"><p>'+p.apport+'</p></div></div>'+
+    '<div class="res-section"><div class="sec-title">Votre voisin(e) de table idéal(e)</div><div class="voisin"><div class="voisin-n">'+p.voisin.n+'</div><div><div class="voisin-name">'+p.voisin.name+'</div><div class="voisin-why">'+p.voisin.why+'</div></div></div></div>'+
+    '<div class="res-section"><div class="sec-title">Vos compatibilités profondes</div><div class="compat-list">'+
+      p.compats.map(function(c){return '<div class="compat-row"><div class="cn">'+c.n+'</div><div class="ci"><div class="ci-name">'+c.name+'</div><div class="ci-why">'+c.why+'</div></div><span class="clv '+c.lv+'">'+c.lb+'</span></div>';}).join('')+
+    '</div></div>'+
+    '<div class="res-section"><div class="sec-title">Le defi qui vous fera grandir</div><div class="tension-box"><p>'+p.tension+'</p></div></div>'+
+    '<div class="cta-brest">'+
+      '<div class="cta-brest-eyebrow">🌍 Brest · Vendredi 27 mars · Thème Voyage ✈️</div>'+
+      '<div class="cta-brest-title">'+(prenom?prenom+', vous venez de vous reveler.':'Vous venez de vous reveler.')+'<br><em>La suite, c\'est à Brest.</em></div>'+
+      '<div class="cta-brest-date">📍 Brest · Vendredi 27 mars · Soirée rencontre · Thème Voyage</div>'+
+      '<p class="cta-brest-text">Ce soir-la, ce soir-là, vous ferez le tour du monde sans quitter votre lounge bar préféré. Ateliers ludiques, icebreakers et belles rencontres au programme.<br><br><strong>Lili placera chaque personne selon ses compatibilités profondes</strong> (selon possibilité de connexion).</p>'+
+      '<div class="cta-brest-promise">'+
+        '<div class="promise-item"><span>✅ Placement personnalisé</span>Lili analyse votre profil et place chacun·e selon ses vraies compatibilités</div>'+
+        '<div class="promise-item"><span>🌍 Thème Voyage</span>Une soirée immersive autour du voyage</div>'+
+        '<div class="promise-item"><span>🎲 Ateliers ludiques</span>Des activités pour briser la glace naturellement</div>'+
+        '<div class="promise-item"><span>⏳ Dernière soirée</span>Avant longtemps — ne la manquez pas !</div>'+
+      '</div>'+
+      (dejaInscrit?'<div style="background:rgba(58,122,94,0.12);border:1px solid rgba(58,122,94,0.3);border-radius:3px;padding:16px;margin-bottom:16px;"><p style="font-size:14px;color:var(--cream);line-height:1.8;">Vous êtes déjà inscrit·e — parfait ! Lili a bien reçu votre profil. À vendredi 27 mars ! 🎉</p></div>':'<p class="cta-urgence">Places limitées — votre profil mérite une vraie rencontre en ce printemps 2026.</p><a href="https://ypl.me/Q1B" target="_blank" class="btn-brest">💙 Oui, je rejoins la soirée Brest — 27 mars →</a>')+
+      '<p class="cta-reassurance" style="margin-top:12px;">Questions ? lilikarantez@gmail.com</p>'+
+    '</div>'+
+    '<div class="lili-signature"><p>Merci d\'avoir pris le temps de vous confier. Les plus belles histoires commencent souvent par un voyage. Peut-être que votre prochaine grande aventure commence vendredi 27 mars, à Brest. ✈️🌍<br><br><strong>À très bientôt !</strong><br><em>Lili Karantez 🍷</em></p></div>'+
+    '<div style="text-align:center;padding-top:16px;border-top:1px solid var(--border);margin-top:20px;">'+
+      '<p style="font-size:12px;color:var(--muted);line-height:2;margin-bottom:12px;"><strong style="color:var(--gold)">Lili Karantez</strong> — Cœurs Solitaires 💛<br>📍 Centre des Affaires Lorient La Base — 1 rue Étienne d\'Orves, 56100 Lorient<br>✉️ lilikarantez@gmail.com · 🏢 SIRET : 40149331700069<br><span style="font-size:11px;">© 2025 Lili Karantez · Tous droits réservés · Propriété intellectuelle exclusive</span></p>'+
+      '<button class="btn-retry" onclick="retry()">Recommencer le questionnaire</button>'+
+    '</div>';
+  showScreen('s-result');
+}
+
+function retry() {
+  cur=0; sel=null; profilCur=-1;
+  window._profilData={}; window._inscrit=''; window._prenom='';
+  for(var i=1;i<=9;i++) scores[i]=0;
+  showScreen('s-intro');
+}
 </script>
 </body>
 </html>
